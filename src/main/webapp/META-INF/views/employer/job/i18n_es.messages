@@ -1,0 +1,18 @@
+employer.job.list.label.reference = Referencia
+employer.job.list.label.deadline = Fecha límite
+employer.job.list.label.title = Título
+
+employer.job.form.label.reference = Referencia
+employer.job.form.label.title = Título
+employer.job.form.label.deadline = Fecha límite
+employer.job.form.label.salary = Salario
+employer.job.form.label.moreInfo = Más Información
+employer.job.form.label.description = Descripción
+
+employer.job.form.label.duty = Tareas
+employer.job.form.label.duty.title = Título
+employer.job.form.label.duty.description = Descripción
+employer.job.form.label.duty.percentage = Porcentaje de trabajo por semana
+
+employer.job.form.button.audit-record = Ir a Registros de Auditoría
+employer.job.form.button.return = Volver
