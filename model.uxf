@@ -794,7 +794,7 @@ m2=1
       <x>686</x>
       <y>392</y>
       <w>280</w>
-      <h>98</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Application
@@ -803,8 +803,9 @@ Application
 + moment: Date {NotNull, Temporal(TIMESTAMP)}
 + title: String {NotBlank}
 + salary: Money{NotNull, Valid]
-+ moreInfon: String {URL}
-+ finalMode: boolean</panel_attributes>
++ moreInfo: String {URL}
++ finalMode: boolean
++ rejectReason: String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -827,9 +828,9 @@ applicatedBy &gt;
     <id>Relation</id>
     <coordinates>
       <x>749</x>
-      <y>483</y>
-      <w>105</w>
-      <h>119</h>
+      <y>497</y>
+      <w>98</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1=0..*
@@ -837,6 +838,6 @@ m2=1
 &lt; applyTo	
 
 </panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>110.0;10.0;10.0;130.0</additional_attributes>
   </element>
 </diagram>

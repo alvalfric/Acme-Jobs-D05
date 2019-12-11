@@ -23,5 +23,9 @@
 	<acme:form-textbox  code="worker.application.form.label.skills" path="skills"/>
 	<acme:form-textbox  code="worker.application.form.label.qualifications" path="qualifications"/>
 	
+	<jstl:if test="${status == 'REJECTED'}">
+		<acme:form-textarea  code="employer.application.form.label.rejectReason" path="rejectReason" readonly="true"/>
+	</jstl:if>
+	
 	<acme:form-return code="worker.application.form.button.return"/>
 </acme:form>
