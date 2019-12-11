@@ -15,10 +15,17 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="auditor.auditrecord.form.label.reference" path="reference"/>
+	<acme:form-textbox code="auditor.auditrecord.form.label.reference" path="reference" readonly="true"/>
 	<acme:form-textbox code="auditor.auditrecord.form.label.title" path="title"/>
-	<acme:form-moment  code="auditor.auditrecord.form.label.moment" path="moment" />
-	<acme:form-url  code="auditor.auditrecord.form.label.body" path="body" />
+	<acme:form-select code="auditor.auditrecord.form.label.status" path="status">
+		<acme:form-option code="auditor.auditrecord.form.label.draft" value="false"/>
+		<acme:form-option code="auditor.auditrecord.form.label.published" value="true"/>
+	</acme:form-select>
+	<jstl:if test= "${command != 'create'}">
+			<acme:form-moment  code="auditor.auditrecord.form.label.moment" path="moment" readonly="true"/>
+	</jstl:if>
+	<acme:form-textbox     code="auditor.auditrecord.form.label.body" path="body" />
 	
+	<acme:form-submit test="${command == 'create'}" code="auditor.auditrecord.form.button.create" action="auditor/auditrecord/create"/>
 	<acme:form-return code="auditor.auditrecord.form.button.return"/>
 </acme:form>
