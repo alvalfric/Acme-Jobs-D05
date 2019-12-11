@@ -18,6 +18,7 @@ worker.application.form.label.status = Status
 worker.application.form.label.statement = Statement
 worker.application.form.label.skills = Skills
 worker.application.form.label.qualifications = Qualifications
+employer.application.form.label.rejectReason = Reject Reason
 
 worker.application.form.button.return = Return
 

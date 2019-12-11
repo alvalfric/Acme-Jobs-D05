@@ -799,6 +799,7 @@
 		<property name="qualifications" value="Qualifications example 3" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job4" />
+		<property name="rejectReason" value="I don't care" />
     </bean>
     
     <bean name="application4" class="acme.entities.applications.Application">
@@ -832,6 +833,7 @@
 		<property name="qualifications" value="Qualifications example 3" />
 		<property name="worker" ref="workerWorker" />
 		<property name="job" ref="job2" />
+		<property name="rejectReason" value="I don't care about this either" />
     </bean>
   
   	<!-- Messages -->
