@@ -1077,6 +1077,7 @@
 	<bean name="auditor1Auditor" class="acme.entities.roles.Auditor">
 		<property name="firm" value="xxxxxxxxxxxxx"/>
 		<property name="responsabilityStat" value="responsability Statement 1"/>
+		<property name="status" value="false"/>
 		<property name="userAccount" ref="auditor1UserAccount" />
 	</bean>
 
@@ -1108,6 +1109,7 @@
 	<bean name="auditor2Auditor" class="acme.entities.roles.Auditor">
 		<property name="firm" value="yyyyyyyyyyyyyyyyyyyyyy"/>
 		<property name="responsabilityStat" value="responsability Statement 2"/>
+		<property name="status" value="false"/>
 		<property name="userAccount" ref="auditor2UserAccount" />
 	</bean>
 
@@ -1139,6 +1141,8 @@
 	<bean name="auditor3Auditor" class="acme.entities.roles.Auditor">
 		<property name="firm" value="zzzzzzzzzzzzzzzzzzzzzz"/>
 		<property name="responsabilityStat" value="responsability Statement 3"/>
+		<property name="status" value="true"/>
+		
 		<property name="userAccount" ref="auditor3UserAccount" />
 	</bean>
 
