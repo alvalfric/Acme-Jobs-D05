@@ -43,8 +43,12 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "status", "body", "auditor", "job");
-
+		request.unbind(entity, model, "reference", "title", "status", "body");
+		Job job = entity.getJob();
+		model.setAttribute("job", job);
+		Auditor auditor = entity.getAuditor();
+		model.setAttribute("auditor", auditor);
+		job.getApplications().size();
 	}
 
 	@Override
@@ -60,9 +64,6 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 
 		Auditor auditor = this.repository.findOneAuditorById(auditorId);
 		Job job = this.repository.findOneJobById(jobId);
-
-		System.out.println("INFORMATION: " + job.getTitle());
-		System.out.println("INFORMATION: " + auditor.getAuthorityName());
 
 		result.setAuditor(auditor);
 		result.setJob(job);

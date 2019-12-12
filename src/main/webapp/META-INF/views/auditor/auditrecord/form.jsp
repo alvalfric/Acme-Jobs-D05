@@ -26,6 +26,6 @@
 	</jstl:if>
 	<acme:form-textbox     code="auditor.auditrecord.form.label.body" path="body" />
 	
-	<acme:form-submit test="${command == 'create'}" code="auditor.auditrecord.form.button.create" action="auditor/auditrecord/create"/>
+	<acme:form-submit test="${command == 'create'}" code="auditor.auditrecord.form.button.create" action="/auditor/auditrecord/create?jobId=${job.id}"/>
 	<acme:form-return code="auditor.auditrecord.form.button.return"/>
 </acme:form>
