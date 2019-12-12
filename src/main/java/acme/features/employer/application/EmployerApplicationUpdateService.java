@@ -92,10 +92,9 @@ public class EmployerApplicationUpdateService implements AbstractUpdateService<E
 
 		entity.setStatus(request.getModel().getString("status"));
 		if (request.getModel().getString("status").equals("REJECTED")) {
-			if (request.getModel().getString("rejectReason").equals("")) {
-
+			if (!request.getModel().getString("rejectReason").isEmpty()) {
+				entity.setRejectReason(request.getModel().getString("rejectReason"));
 			}
-			entity.setRejectReason(request.getModel().getString("rejectReason"));
 		}
 
 		this.repository.save(entity);
