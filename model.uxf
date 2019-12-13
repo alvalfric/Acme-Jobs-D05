@@ -792,15 +792,16 @@ m2=1
     <id>UMLClass</id>
     <coordinates>
       <x>686</x>
-      <y>392</y>
+      <y>378</y>
       <w>280</w>
-      <h>112</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Application
 --
 + reference: String{Unique, NotBlank, Length(min=5,max=23)}
 + moment: Date {NotNull, Temporal(TIMESTAMP)}
++ lastUpdate: Date {NotNull, Temporal(TIMESTAMP)}
 + title: String {NotBlank}
 + salary: Money{NotNull, Valid]
 + moreInfo: String {URL}
@@ -814,7 +815,7 @@ Application
       <x>679</x>
       <y>343</y>
       <w>161</w>
-      <h>63</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1=0..*
@@ -822,7 +823,7 @@ m2=1
 applicatedBy &gt;
 
 </panel_attributes>
-    <additional_attributes>210.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>210.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
