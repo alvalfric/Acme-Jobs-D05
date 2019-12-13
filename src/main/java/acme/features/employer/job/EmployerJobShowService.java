@@ -21,7 +21,7 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 	// Internal state --------------------------------------------------------------------
 
 	@Autowired
-	EmployerJobRepository repository;
+	private EmployerJobRepository repository;
 
 
 	// AbstractListService<Employer, Job> interface -------------------------------------

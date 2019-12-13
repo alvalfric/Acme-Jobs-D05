@@ -23,11 +23,17 @@ tr:nth-child(even) {
 <acme:form>
 	<acme:form-textbox code="employer.job.form.label.reference" path="reference"/>
 	<acme:form-textbox code="employer.job.form.label.title" path="title"/>
+	<jstl:if test= "${command != 'show'}">
+	<acme:form-select code="employer.job.form.label.publish" path="finalMode">
+		<acme:form-option code="employer.job.form.label.publish-draft" value="false"/>
+		<acme:form-option code="employer.job.form.label.publish-published" value="true"/>
+	</acme:form-select>
+	</jstl:if>
 	<acme:form-textbox code="employer.job.form.label.deadline" path="deadline"/>
 	<acme:form-textbox code="employer.job.form.label.salary" path="salary"/>
 	<acme:form-textbox code="employer.job.form.label.moreInfo" path="moreInfo"/>
 	<acme:form-textarea code="employer.job.form.label.description" path="descriptor.description"/>
-	<acme:form-textbox code="employer.job.form.label.auditor-record" path="id"/>
+	<jstl:if test= "${descriptor.id != null}">
 	<b><acme:message code="employer.job.form.label.duty"/></b>
 	<table>
 		<tr>
@@ -44,11 +50,26 @@ tr:nth-child(even) {
 		</jstl:forEach>
 	</table>
 	<br>
+	<jstl:if test= "${command == 'create'}">
+			<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/employer/duty/form?jobId=${id}'" value="<acme:message code="crearduty"/>">
+	</jstl:if>
+	</jstl:if>
 
-	<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/employer/auditrecord/list-mine?jobId=${id}'" value="<acme:message code="employer.job.form.button.audit-record"/>" >
+
+
+	<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/employer/auditrecord/list-mine?jobId=${id}'" value="<acme:message code="employer.job.form.button.audit-record"/>">
+
+	<acme:form-return code="employer.job.form.button.return"/>	
+</acme:form>
+
+
+
+
+
+
+
+
 	<%--
 	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="auditrecord/list-mine?jobId=${id}"/>
 	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="acme-jobs/employer/auditrecord/list-mine?jobId=${id}'"/>
 	--%>
-	<acme:form-return code="employer.job.form.button.return"/>	
-</acme:form>
