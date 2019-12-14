@@ -266,6 +266,7 @@
         `version` integer not null,
         `firmm` varchar(255),
         `responsability_statt` varchar(255),
+        `statuss` bit not null,
         primary key (`id`)
     ) engine=InnoDB;
 

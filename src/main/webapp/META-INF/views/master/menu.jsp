@@ -63,6 +63,11 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.administrator-auditor" access="hasRole('Administrator')">
+		<acme:menu-suboption code="master.menu.administrator-auditor.request-auditor" action="/administrator/request-auditor/list-pending"/>
+		
+			</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
 			<%--

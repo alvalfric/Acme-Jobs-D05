@@ -78,6 +78,9 @@ master.menu.administrator.nonCommercialBanner = Non-Commercial Banner
 master.menu.administrator.nonCommercialBanner.create = Create Non-Commercial Banner
 
 
+master.menu.administrator-auditor=  Auditor
+master.menu.administrator-auditor.request-auditor= List Requests Auditor
+
 master.menu.administrator.shutdown = Shut down
 
 # master.menu.authenticated ###################################################

@@ -24,7 +24,8 @@ public class RequestAuditor extends DomainEntity {
 	@NotBlank
 	private String				responsabilityStatt;
 
-	/* private boolean statuss; */
+	private boolean				statuss;
+
 	/*
 	 * @ManyToMany
 	 * private List<Authenticated> users;
