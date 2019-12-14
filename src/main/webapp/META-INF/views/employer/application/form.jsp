@@ -17,7 +17,8 @@
 
 <acme:form>
 	<acme:form-textbox code="employer.application.form.label.reference" path="reference" readonly="true"/>
-	<acme:form-moment  code="employer.application.form.label.moment" path="moment" readonly="true"/>	
+	<acme:form-moment  code="employer.application.form.label.moment" path="moment" readonly="true"/>
+	<acme:form-moment  code="employer.application.form.label.lastUpdate" path="lastUpdate" readonly="true"/>	
 	<jstl:if test="${status != 'PENDING' && command == 'show'}">
 		<acme:form-textbox  code="employer.application.form.label.status" path="status" readonly="true"/>
 	</jstl:if>

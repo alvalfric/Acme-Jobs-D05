@@ -11,9 +11,11 @@
 employer.application.list.label.reference = Referencia 
 employer.application.list.label.moment = Momento
 employer.application.list.label.status = Estatus
+employer.application.list.label.lastUpdate = Última Actualización
 
 employer.application.form.label.reference = Referencia
 employer.application.form.label.moment = Momento
+employer.application.form.label.lastUpdate = Última Actualización
 employer.application.form.label.status = Estatus
 employer.application.form.label.statement = Declaración
 employer.application.form.label.skills = Habilidades

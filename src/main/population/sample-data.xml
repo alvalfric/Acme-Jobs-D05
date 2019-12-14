@@ -771,6 +771,7 @@
 	<bean name="application1" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP1-JOB1:WOR3" />
 		<property name="moment" value="2018/12/11 23:59" />
+		<property name="lastUpdate" value="2018/12/11 23:59" />
 		<property name="status" value="PENDING" />
 		<property name="statement" value="Statement example 1" />
 		<property name="skills" value="Skills example 1" />
@@ -782,6 +783,7 @@
 	<bean name="application2" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP2-JOB5:WOR2" />
 		<property name="moment" value="2019/05/11 23:59" />
+		<property name="lastUpdate" value="2019/12/01 23:59" />
 		<property name="status" value="ACCEPTED" />
 		<property name="statement" value="statement example2" />
 		<property name="skills" value="Skills example 5" />
@@ -793,6 +795,7 @@
 	<bean name="application3" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP3-JOB4:WOR2" />
 		<property name="moment" value="2019/06/11 23:59" />
+		<property name="lastUpdate" value="2019/08/05 23:59" />
 		<property name="status" value="REJECTED" />
 		<property name="statement" value="Statement example 3" />
 		<property name="skills" value="Skills example 3" />
@@ -805,6 +808,7 @@
     <bean name="application4" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP2-JOB3:WOR1" />
 		<property name="moment" value="2019/08/21 12:59" />
+		<property name="lastUpdate" value="2019/11/01 23:59" />
 		<property name="status" value="ACCEPTED" />
 		<property name="statement" value="Statement example 4" />
 		<property name="skills" value="Skills example 4" />
@@ -816,6 +820,7 @@
     <bean name="application5" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP1-JOB1:WOR1" />
 		<property name="moment" value="2019/03/15 16:59" />
+		<property name="lastUpdate" value="2019/03/15 16:59" />
 		<property name="status" value="PENDING" />
 		<property name="statement" value="Statement example 5" />
 		<property name="skills" value="Skills example 5" />
@@ -827,6 +832,7 @@
     <bean name="application6" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP1-JOB2:WOR1" />
 		<property name="moment" value="2019/10/10 10:10" />
+		<property name="lastUpdate" value="2019/12/05 23:59" />
 		<property name="status" value="REJECTED" />
 		<property name="statement" value="Statement example 6" />
 		<property name="skills" value="Skills example 6" />
