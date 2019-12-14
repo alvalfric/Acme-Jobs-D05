@@ -75,6 +75,9 @@ master.menu.administrator.commercialBanner.create = Crear Banner Comercial
 master.menu.administrator.nonCommercialBanner = Banners No Comerciales
 master.menu.administrator.nonCommercialBanner.create = Crear Banner No Comercial
 
+master.menu.user-account.request-auditor= Datos Peticion
+master.menu.user-account.request-becom-auditor= Peticion hacerse auditor
+
 master.menu.administrator.shutdown = Parar el sistema
 
 # master.menu.authenticated ###################################################

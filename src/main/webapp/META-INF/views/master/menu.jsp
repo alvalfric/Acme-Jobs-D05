@@ -110,6 +110,9 @@
 			<acme:menu-suboption code="master.menu.user-account.employer" action="/authenticated/employer/update" access="hasRole('Employer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-worker" action="/authenticated/worker/create" access="!hasRole('Worker')"/>
 			<acme:menu-suboption code="master.menu.user-account.worker" action="/authenticated/worker/update" access="hasRole('Worker')"/>
+			
+			<acme:menu-suboption code="master.menu.user-account.request-becom-auditor" action="/authenticated/request-auditor/create" access="!hasRole('Auditor') "/>
+			<acme:menu-suboption code="master.menu.user-account.request-auditor" action="/authenticated/request-auditor/update" access="!hasRole('Auditor') "/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out" action="/master/sign-out" access="isAuthenticated()"/>

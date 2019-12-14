@@ -141,6 +141,9 @@ master.menu.user-account.become-employer = Become a employer
 master.menu.user-account.become-worker = Become a worker
 master.menu.user-account.worker = Worker data
 
+master.menu.user-account.request-auditor= Request data
+master.menu.user-account.request-becom-auditor= Request to becom auditor
+
 # master.footer ###############################################################
 
 master.footer.title.about = About us

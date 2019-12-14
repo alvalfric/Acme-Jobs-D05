@@ -261,6 +261,14 @@
         primary key (`id`)
     ) engine=InnoDB;
 
+    create table `request_auditor` (
+       `id` integer not null,
+        `version` integer not null,
+        `firmm` varchar(255),
+        `responsability_statt` varchar(255),
+        primary key (`id`)
+    ) engine=InnoDB;
+
     create table `requests` (
        `id` integer not null,
         `version` integer not null,

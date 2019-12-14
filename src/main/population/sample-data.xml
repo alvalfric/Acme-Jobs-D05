@@ -1148,4 +1148,15 @@
 		<property name="userAccount" ref="auditor3UserAccount" />
 	</bean>
 	
+		<bean name="requestauditor1" class= "acme.entities.requestauditors.RequestAuditor">
+	  <property name="firmm" value="auditor01"/>
+	  <property name="responsabilityStatt" value="responsability1"/>
+   	</bean>
+   	
+   	  <bean name="requestauditor2" class= "acme.entities.requestauditors.RequestAuditor">
+	  <property name="firmm" value="auditor02"/>
+	  <property name="responsabilityStatt" value="responsability2"/>
+	
+   	</bean>
+	
 </beans>

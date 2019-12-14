@@ -1,0 +1,19 @@
+# i18n_en.messages
+#
+# Copyright (c) 2019 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+authenticated.request-auditor.form.title.create = Request Become an auditor
+authenticated.request-auditor.form.title.update = Update peticion data
+
+authenticated.request-auditor.form.label.firmm = Firm 
+authenticated.request-auditor.form.label.responsabilityStatt = responsability Statment:
+
+authenticated.request-auditor.form.button.create = register
+
+authenticated.request-auditor.form.button.return = Return
