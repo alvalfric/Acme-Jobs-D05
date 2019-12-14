@@ -389,13 +389,15 @@ Challenge
     <coordinates>
       <x>168</x>
       <y>707</y>
-      <w>175</w>
+      <w>189</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 CommercialBanner
 --
-+creditCard: String {NotBlank, Pattern}</panel_attributes>
++creditCardNumber: String {NotBlank}
++ccExpirationDate: String {NotBlank}
++ccValidationNumber: String {NotBlank}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -622,7 +624,7 @@ r2=user</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>476</x>
-      <y>588</y>
+      <y>616</y>
       <w>280</w>
       <h>133</h>
     </coordinates>
@@ -641,7 +643,7 @@ Job
     <id>UMLClass</id>
     <coordinates>
       <x>483</x>
-      <y>931</y>
+      <y>994</y>
       <w>280</w>
       <h>77</h>
     </coordinates>
@@ -657,7 +659,7 @@ Duty
     <id>UMLClass</id>
     <coordinates>
       <x>539</x>
-      <y>791</y>
+      <y>840</y>
       <w>161</w>
       <h>49</h>
     </coordinates>
@@ -671,24 +673,24 @@ Descriptor
     <id>Relation</id>
     <coordinates>
       <x>609</x>
-      <y>714</y>
+      <y>742</y>
       <w>77</w>
-      <h>91</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1=1
 m2=1
 &lt; Describes
 r1= descriptor</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>609</x>
-      <y>833</y>
+      <y>882</y>
       <w>70</w>
-      <h>112</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1=1
@@ -696,7 +698,7 @@ m2=0..*
 &lt; hasDuty
 r1=duties
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -704,20 +706,20 @@ r1=duties
       <x>581</x>
       <y>483</y>
       <w>84</w>
-      <h>119</h>
+      <h>147</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1=0..*
 m2=1
 registeredBy v</panel_attributes>
-    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>980</x>
-      <y>672</y>
-      <w>196</w>
+      <x>973</x>
+      <y>700</y>
+      <w>224</w>
       <h>119</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
@@ -726,7 +728,7 @@ AuditRecord
 + reference: String {Unique, NotBlank}
 + title: String {NotBlank}
 + status: boolean {NotBlank}
-+ moment: Date {NotNull,Temporal(TIMESPAMP}
++ moment: Date {NotNull,Temporal(TIMESTAMP}
 + body: String {NotBlank}</panel_attributes>
     <additional_attributes/>
   </element>
@@ -762,7 +764,7 @@ Auditor
       <x>1071</x>
       <y>476</y>
       <w>77</w>
-      <h>210</h>
+      <h>238</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
 m1=0..*
@@ -770,14 +772,14 @@ m2=1
 &lt; auditedBy	
 
 </panel_attributes>
-    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;320.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>749</x>
-      <y>679</y>
-      <w>245</w>
+      <y>707</y>
+      <w>238</w>
       <h>42</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
@@ -786,7 +788,7 @@ m2=1
 &lt; auditedJob
 
 </panel_attributes>
-    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -794,13 +796,14 @@ m2=1
       <x>686</x>
       <y>462</y>
       <w>280</w>
-      <h>126</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Application
 --
 + reference: String{Unique, NotBlank, Length(min=5,max=23)}
 + moment: Date {NotNull, Temporal(TIMESTAMP)}
++ lastUpdate: Date {NotNull, Temporal(TIMESTAMP)}
 + lastUpdate: Date {NotNull, Temporal(TIMESTAMP)}
 + title: String {NotBlank}
 + salary: Money{NotNull, Valid]
@@ -829,7 +832,7 @@ applicatedBy &gt;
     <id>Relation</id>
     <coordinates>
       <x>749</x>
-      <y>567</y>
+      <y>595</y>
       <w>98</w>
       <h>105</h>
     </coordinates>
@@ -839,7 +842,7 @@ m2=1
 &lt; applyTo	
 
 </panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -847,13 +850,15 @@ m2=1
       <x>350</x>
       <y>427</y>
       <w>147</w>
-      <h>63</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Sponsor
 --
 + company: String {NotBlank}
-+ creditCard: String</panel_attributes>
++ creditCardNumber: String
++ ccExpirationDate: String
++ ccValidationNumber: String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -878,7 +883,7 @@ Sponsor
     <panel_attributes>lt=x-&gt;
 m1=0..*
 m2=1
-createdBy v</panel_attributes>
+createdBy ^</panel_attributes>
     <additional_attributes>10.0;160.0;10.0;10.0;310.0;10.0</additional_attributes>
   </element>
 </diagram>
