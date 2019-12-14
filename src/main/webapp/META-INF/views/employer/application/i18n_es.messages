@@ -32,3 +32,10 @@ employer.application.form.button.create = Create
 
 employer.application.error.notBlank = Si se rechaza, la razón no puede ser nula
 employer.application.error.web = 
+
+employer.application.form.button.selectStatus = Mostrar por Estatus: 
+employer.application.form.button.accepted = Aceptadas
+employer.application.form.button.pending = Pendientes
+employer.application.form.button.rejected = Rechazadas
+employer.application.form.button.statusButton = Mostrar
+
