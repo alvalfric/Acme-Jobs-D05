@@ -794,13 +794,14 @@ m2=1
       <x>686</x>
       <y>462</y>
       <w>280</w>
-      <h>112</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Application
 --
 + reference: String{Unique, NotBlank, Length(min=5,max=23)}
 + moment: Date {NotNull, Temporal(TIMESTAMP)}
++ lastUpdate: Date {NotNull, Temporal(TIMESTAMP)}
 + title: String {NotBlank}
 + salary: Money{NotNull, Valid]
 + moreInfo: String {URL}
