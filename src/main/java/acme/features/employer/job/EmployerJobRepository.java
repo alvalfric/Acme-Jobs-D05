@@ -9,10 +9,14 @@ import org.springframework.stereotype.Repository;
 import acme.entities.auditrecord.Auditrecord;
 import acme.entities.jobs.Duty;
 import acme.entities.jobs.Job;
+import acme.entities.roles.Employer;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
 public interface EmployerJobRepository extends AbstractRepository {
+
+	@Query("select e from Employer e where e.userAccount.id = ?1")
+	Employer findOneEmployerByUserAccountId(int id);
 
 	@Query("select j from Job j where j.id = ?1")
 	Job findOneJobById(int id);

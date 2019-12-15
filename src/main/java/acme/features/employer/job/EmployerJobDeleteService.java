@@ -7,15 +7,12 @@ import org.springframework.stereotype.Service;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
-import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.components.Response;
-import acme.framework.helpers.PrincipalHelper;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractDeleteService;
 
 @Service
-public class EmployerJobCreateService implements AbstractCreateService<Employer, Job> {
+public class EmployerJobDeleteService implements AbstractDeleteService<Employer, Job> {
 
 	@Autowired
 	EmployerJobRepository repository;
@@ -47,10 +44,15 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 	}
 
 	@Override
-	public Job instantiate(final Request<Job> request) {
+	public Job findOne(final Request<Job> request) {
+		assert request != null;
+
 		Job result;
-		result = new Job();
-		result.setEmployer(this.repository.findOneEmployerByUserAccountId(request.getPrincipal().getAccountId()));
+		int id;
+
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOneJobById(id);
+		result.getDescriptor().getDuties().size();
 
 		return result;
 	}
@@ -63,21 +65,13 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 	}
 
 	@Override
-	public void create(final Request<Job> request, final Job entity) {
+	public void delete(final Request<Job> request, final Job entity) {
 		assert request != null;
 		assert entity != null;
 
-		this.repository.save(entity.getDescriptor());
-		this.repository.save(entity);
+		this.repository.deleteAll(entity.getDescriptor().getDuties());
+		this.repository.delete(entity);
+		this.repository.delete(entity.getDescriptor());
 	}
 
-	@Override
-	public void onSuccess(final Request<Job> request, final Response<Job> response) {
-		assert request != null;
-		assert response != null;
-
-		if (request.isMethod(HttpMethod.POST)) {
-			PrincipalHelper.handleUpdate();
-		}
-	}
 }

@@ -1,9 +1,10 @@
 
-package acme.features.employer.job;
+package acme.features.employer.duty;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.jobs.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
@@ -15,21 +16,21 @@ import acme.framework.helpers.PrincipalHelper;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class EmployerJobCreateService implements AbstractCreateService<Employer, Job> {
+public class EmployerDutyCreateService implements AbstractCreateService<Employer, Duty> {
 
 	@Autowired
-	EmployerJobRepository repository;
+	EmployerDutyRepository repository;
 
 
 	@Override
-	public boolean authorise(final Request<Job> request) {
+	public boolean authorise(final Request<Duty> request) {
 		assert request != null;
 
 		return true;
 	}
 
 	@Override
-	public void bind(final Request<Job> request, final Job entity, final Errors errors) {
+	public void bind(final Request<Duty> request, final Duty entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -38,41 +39,44 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 	}
 
 	@Override
-	public void unbind(final Request<Job> request, final Job entity, final Model model) {
+	public void unbind(final Request<Duty> request, final Duty entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "deadline", "salary", "moreInfo", "finalMode", "descriptor.description");
+		model.setAttribute("jobId", request.getModel().getAttribute("jobId"));
+
+		request.unbind(entity, model, "title", "description", "percentage");
 	}
 
 	@Override
-	public Job instantiate(final Request<Job> request) {
-		Job result;
-		result = new Job();
-		result.setEmployer(this.repository.findOneEmployerByUserAccountId(request.getPrincipal().getAccountId()));
+	public Duty instantiate(final Request<Duty> request) {
+		Duty result;
+		Job job;
+		job = this.repository.findOneJobById(Integer.parseInt(request.getModel().getAttribute("jobId").toString()));
+		result = new Duty();
+		result.setDescriptor(job.getDescriptor());
 
 		return result;
 	}
 
 	@Override
-	public void validate(final Request<Job> request, final Job entity, final Errors errors) {
+	public void validate(final Request<Duty> request, final Duty entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
 	}
 
 	@Override
-	public void create(final Request<Job> request, final Job entity) {
+	public void create(final Request<Duty> request, final Duty entity) {
 		assert request != null;
 		assert entity != null;
 
-		this.repository.save(entity.getDescriptor());
 		this.repository.save(entity);
 	}
 
 	@Override
-	public void onSuccess(final Request<Job> request, final Response<Job> response) {
+	public void onSuccess(final Request<Duty> request, final Response<Duty> response) {
 		assert request != null;
 		assert response != null;
 

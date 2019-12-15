@@ -18,17 +18,12 @@ import acme.framework.services.AbstractShowService;
 @Service
 public class EmployerJobShowService implements AbstractShowService<Employer, Job> {
 
-	// Internal state --------------------------------------------------------------------
-
 	@Autowired
 	private EmployerJobRepository repository;
 
 
-	// AbstractListService<Employer, Job> interface -------------------------------------
-
 	@Override
 	public boolean authorise(final Request<Job> request) {
-		// TODO Auto-generated method stub
 		assert request != null;
 
 		boolean result;
@@ -48,12 +43,9 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 
 	@Override
 	public void unbind(final Request<Job> request, final Job entity, final Model model) {
-		// TODO Auto-generated method stub
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-
-		//int jobId = request.getModel().getInteger("id");
 
 		request.unbind(entity, model, "reference", "title", "deadline");
 		request.unbind(entity, model, "id", "salary", "moreInfo", "finalMode", "descriptor.description", "descriptor.duties");
@@ -65,7 +57,6 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 
 	@Override
 	public Job findOne(final Request<Job> request) {
-		// TODO Auto-generated method stub
 		assert request != null;
 
 		Job result;

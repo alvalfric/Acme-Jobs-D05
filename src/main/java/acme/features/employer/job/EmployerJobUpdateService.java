@@ -12,10 +12,10 @@ import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.components.Response;
 import acme.framework.helpers.PrincipalHelper;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class EmployerJobCreateService implements AbstractCreateService<Employer, Job> {
+public class EmployerJobUpdateService implements AbstractUpdateService<Employer, Job> {
 
 	@Autowired
 	EmployerJobRepository repository;
@@ -47,15 +47,6 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 	}
 
 	@Override
-	public Job instantiate(final Request<Job> request) {
-		Job result;
-		result = new Job();
-		result.setEmployer(this.repository.findOneEmployerByUserAccountId(request.getPrincipal().getAccountId()));
-
-		return result;
-	}
-
-	@Override
 	public void validate(final Request<Job> request, final Job entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
@@ -63,7 +54,20 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 	}
 
 	@Override
-	public void create(final Request<Job> request, final Job entity) {
+	public Job findOne(final Request<Job> request) {
+		assert request != null;
+
+		Job result;
+		int id;
+
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOneJobById(id);
+
+		return result;
+	}
+
+	@Override
+	public void update(final Request<Job> request, final Job entity) {
 		assert request != null;
 		assert entity != null;
 
@@ -80,4 +84,5 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 			PrincipalHelper.handleUpdate();
 		}
 	}
+
 }
