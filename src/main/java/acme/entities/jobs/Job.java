@@ -1,11 +1,12 @@
 
 package acme.entities.jobs;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -34,7 +35,7 @@ public class Job extends DomainEntity {
 
 	// Serialisation identifier -------------------------------------------
 
-	private static final long				serialVersionUID	= 1L;
+	private static final long		serialVersionUID	= 1L;
 
 	// Attributes ---------------------------------------------------------
 
@@ -42,38 +43,38 @@ public class Job extends DomainEntity {
 	@NotBlank
 	@Length(min = 3, max = 15)
 	@Pattern(regexp = "^([A-Z0-9]{4})-([A-Z0-9]{4})$")
-	private String							reference;
+	private String					reference;
 
 	@NotBlank
-	private String							title;
+	private String					title;
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date							deadline;
+	private Date					deadline;
 
 	@NotNull
 	@Valid
-	private Money							salary;
+	private Money					salary;
 
 	@URL
-	private String							moreInfo;
+	private String					moreInfo;
 
-	private boolean							finalMode;
+	private boolean					finalMode;
 
 	// Relationships ------------------------------------------------------
 
 	@NotNull
 	@Valid
 	@OneToOne(optional = false)
-	private Descriptor						descriptor;
+	private Descriptor				descriptor;
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private Employer						employer;
+	private Employer				employer;
 
-	@OneToMany(mappedBy = "job")
-	private Collection<@Valid Application>	applications;
+	@OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
+	private Set<@Valid Application>	applications;
 
 	@OneToMany(mappedBy = "job")
 	private Collection<@Valid Auditrecord>	auditrecords;

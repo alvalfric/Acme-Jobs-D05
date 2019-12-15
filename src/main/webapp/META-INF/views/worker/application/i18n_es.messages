@@ -11,13 +11,16 @@
 worker.application.list.label.reference = Referencia
 worker.application.list.label.moment = Momento
 worker.application.list.label.status = Estatus
+worker.application.list.label.lastUpdate = Última Actualización
 
 worker.application.form.label.reference = Referencia
 worker.application.form.label.moment = Momento
+worker.application.form.label.lastUpdate = Última Actualización
 worker.application.form.label.status = Estatus
 worker.application.form.label.statement = Declaración
 worker.application.form.label.skills = Habilidades
 worker.application.form.label.qualifications = Cualificaciones
+employer.application.form.label.rejectReason = Razón de Rechazo
 
 worker.application.form.button.return = Volver
 

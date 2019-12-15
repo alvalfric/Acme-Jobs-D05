@@ -11,13 +11,19 @@
 employer.application.list.label.reference = Reference
 employer.application.list.label.moment = Moment
 employer.application.list.label.status = Status 
+employer.application.list.label.lastUpdate = Last Update 
 
 employer.application.form.label.reference = Reference
 employer.application.form.label.moment = Moment
+employer.application.form.label.lastUpdate = Last Update
 employer.application.form.label.status = Status
 employer.application.form.label.statement = Statement
 employer.application.form.label.skills = Skills
 employer.application.form.label.qualifications = Qualifications
+employer.application.form.label.rejectReason = Reject Reason
+
+employer.application.form.label.status.accepted = Accepted
+employer.application.form.label.status.rejected = Rejected
 
 employer.application.form.button.return = Return
 
@@ -26,7 +32,7 @@ employer.application.form.button.delete = Delete
 employer.application.form.button.create = Create
 
 
-employer.application.error.NotBlank = Its cannot be null
+employer.application.error.notBlank = If rejected, reason cannot be null
 employer.application.error.web = 
 
 

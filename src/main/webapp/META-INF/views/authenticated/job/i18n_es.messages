@@ -15,4 +15,5 @@ authenticated.job.form.label.duty.description = Descripción
 authenticated.job.form.label.duty.percentage = Porcentaje de trabajo por semana
 
 authenticated.job.form.button.audit-record = Ir a Registros de Auditoría
+authenticated.job.form.button.application = Aplicar 
 authenticated.job.form.button.return = Volver
