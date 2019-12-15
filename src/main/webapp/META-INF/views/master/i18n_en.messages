@@ -73,8 +73,8 @@ master.menu.administrator.company-records.create = Create Company Records
 master.menu.administrator.investorRecords = Investor Records
 master.menu.administrator.investorRecord.create = Create Investor Record
 master.menu.administrator.commercialBanner = Commercial Banners
-master.menu.administrator.commercialBanner.create = Create Commercial Banners
-master.menu.administrator.nonCommercialBanner = Non-Commercial Banner
+master.menu.administrator.commercialBanner.create = Create Commercial Banner
+master.menu.administrator.nonCommercialBanner = Non-Commercial Banners
 master.menu.administrator.nonCommercialBanner.create = Create Non-Commercial Banner
 
 
@@ -127,6 +127,14 @@ master.menu.provider.requests.create = Create Request
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 master.menu.consumer.offer.create = Create Offer
+
+# master.menu.sponsor ###################################################
+
+master.menu.sponsor = Sponsor
+master.menu.sponsor.commercialBanner = My Commercial Banners
+master.menu.sponsor.commercialBanner.create = Create Commercial Banner
+master.menu.sponsor.nonCommercialBanner = My Non-Commercial Banners
+master.menu.sponsor.nonCommercialBanner.create = Create Non-Commercial Banner
 
 # master.menu.user-account ####################################################
 

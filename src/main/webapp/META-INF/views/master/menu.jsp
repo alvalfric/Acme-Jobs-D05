@@ -41,10 +41,10 @@
 			<acme:menu-suboption code="master.menu.administrator.announcement" action="/administrator/announcement/list"/>
 			<acme:menu-suboption code="master.menu.administrator.user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-suboption code="master.menu.administrator.challenge" action="/administrator/challenge/list"/>
-			<%--
+			
 			<acme:menu-suboption code="master.menu.administrator.commercialBanner" action="/administrator/commercial-banner/list"/>
 			<acme:menu-suboption code="master.menu.administrator.nonCommercialBanner" action="/administrator/non-commercial-banner/list"/>
-			--%>
+			
 			<acme:menu-suboption code="master.menu.administrator.company-records" action="/administrator/company-record/list"/>
 			<acme:menu-suboption code="master.menu.administrator.customisation-parameter" action="/administrator/customisation-parameter/list"/>
 			<%--
@@ -54,10 +54,10 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.announcement.create" action="/administrator/announcement/create"/>
 			<acme:menu-suboption code="master.menu.administrator.challenge.create" action="/administrator/challenge/create"/>
-			<%--
+			
 			<acme:menu-suboption code="master.menu.administrator.commercialBanner.create" action="/administrator/commercial-banner/create"/>
 			<acme:menu-suboption code="master.menu.administrator.nonCommercialBanner.create" action="/administrator/non-commercial-banner/create"/>
-			--%>
+			
 			<acme:menu-suboption code="master.menu.administrator.company-records.create" action="/administrator/company-record/create"/>
 			<acme:menu-suboption code="master.menu.administrator.investorRecord.create" action="/administrator/investor-record/create"/>
 			<acme:menu-separator/>
@@ -93,6 +93,14 @@
 			<acme:menu-separator/>
 			--%>
 			<acme:menu-suboption code="master.menu.consumer.offer.create" action="/consumer/offer/create"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.sponsor" access="hasRole('Sponsor')">
+			<acme:menu-suboption code="master.menu.sponsor.commercialBanner" action="/sponsor/commercial-banner/list-mine"/>
+			<acme:menu-suboption code="master.menu.sponsor.nonCommercialBanner" action="/sponsor/non-commercial-banner/list-mine"/>
+		
+			<acme:menu-suboption code="master.menu.sponsor.commercialBanner.create" action="/sponsor/commercial-banner/create"/>
+			<acme:menu-suboption code="master.menu.sponsor.nonCommercialBanner.create" action="/sponsor/non-commercial-banner/create"/>
 		</acme:menu-option>
 	</acme:menu-left>
 
