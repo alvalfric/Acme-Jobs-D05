@@ -24,5 +24,4 @@ public interface SponsorCommercialBannerRepository extends AbstractRepository {
 
 	@Query("select s from Sponsor s where s.userAccount.id = ?1")
 	Sponsor findOneSponsorBUserAccountyId(int id);
-
 }

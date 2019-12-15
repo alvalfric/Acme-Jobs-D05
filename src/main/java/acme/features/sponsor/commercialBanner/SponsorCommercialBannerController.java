@@ -34,7 +34,6 @@ public class SponsorCommercialBannerController extends AbstractController<Sponso
 	@Autowired
 	private SponsorCommercialBannerDeleteService	deleteService;
 
-
 	// Constructors ----------------------------------------------------------------------------
 
 	@PostConstruct
