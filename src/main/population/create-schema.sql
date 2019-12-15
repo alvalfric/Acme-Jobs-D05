@@ -55,6 +55,7 @@
         `user_account_id` integer,
         `firm` varchar(255),
         `responsability_stat` varchar(255),
+        `status` bit not null,
         primary key (`id`)
     ) engine=InnoDB;
 
