@@ -797,13 +797,13 @@ m2=1
       <y>462</y>
       <w>280</w>
       <h>140</h>
-
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Application
 --
 + reference: String{Unique, NotBlank, Length(min=5,max=23)}
 + moment: Date {NotNull, Temporal(TIMESTAMP)}
++ lastUpdate: Date {NotNull, Temporal(TIMESTAMP)}
 + lastUpdate: Date {NotNull, Temporal(TIMESTAMP)}
 + title: String {NotBlank}
 + salary: Money{NotNull, Valid]

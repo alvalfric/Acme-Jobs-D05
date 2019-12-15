@@ -11,7 +11,7 @@
 	<acme:form-double code="sponsor.commercialBanner.form.label.ccValidationNumber" path="ccValidationNumber" />
 	<acme:form-double code="sponsor.commercialBanner.form.label.ccExpirationDate" path="ccExpirationDate" />
 	
-	<!--<acme:form-submit test="${command == 'show'}"
+	<acme:form-submit test="${command == 'show'}"
 		code="sponsor.commercialBanner.form.button.update"
 		action="/sponsor/commercial-banner/update"/>
 	<acme:form-submit test="${command == 'show'}"
@@ -25,6 +25,6 @@
 		action="/sponsor/commercial-banner/update"/>
 	<acme:form-submit test="${command == 'delete'}"
 		code="sponsor.commercialBanner.form.button.delete"
-		action="/sponsor/commercial-banner/delete"/>-->
+		action="/sponsor/commercial-banner/delete"/>
 	<acme:form-return code="sponsor.commercialBanner.form.button.return"/>
 </acme:form>
