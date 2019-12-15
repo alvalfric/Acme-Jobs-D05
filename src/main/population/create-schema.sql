@@ -65,7 +65,7 @@
         `status` bit not null,
         `title` varchar(255),
         `auditor_id` integer not null,
-        `job_id` integer,
+        `job_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
 

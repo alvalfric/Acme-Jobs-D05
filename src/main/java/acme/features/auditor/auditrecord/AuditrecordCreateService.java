@@ -49,6 +49,7 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 		Auditor auditor = entity.getAuditor();
 		model.setAttribute("auditor", auditor);
 		job.getApplications().size();
+		job.getAuditrecords().size();
 	}
 
 	@Override
@@ -57,13 +58,20 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 
 		Auditrecord result = new Auditrecord();
 
-		result.setReference("job-auditor");
+		Date moment;
+		moment = new Date(System.currentTimeMillis() - 1);
+
+		result.setMoment(moment);
 
 		int auditorId = request.getPrincipal().getActiveRoleId();
 		int jobId = request.getModel().getInteger("jobId");
 
 		Auditor auditor = this.repository.findOneAuditorById(auditorId);
 		Job job = this.repository.findOneJobById(jobId);
+
+		job.getAuditrecords().add(result);
+
+		result.setReference("JOB-" + jobId + ":AUDITOR-" + auditorId);
 
 		result.setAuditor(auditor);
 		result.setJob(job);
