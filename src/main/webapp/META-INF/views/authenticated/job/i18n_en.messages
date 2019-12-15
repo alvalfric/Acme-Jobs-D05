@@ -15,4 +15,5 @@ authenticated.job.form.label.duty.description = Description
 authenticated.job.form.label.duty.percentage = Percentage of work per week
 
 authenticated.job.form.button.audit-record = Go to Audit Records
+authenticated.job.form.button.application = Apply
 authenticated.job.form.button.return = Return

@@ -7,10 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.applications.Application;
+import acme.entities.jobs.Job;
 import acme.entities.roles.Worker;
+import acme.features.authenticated.job.AuthenticatedJobRepository;
+import acme.features.authenticated.worker.AuthenticatedWorkerRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractCreateService;
 
 @Service
@@ -19,7 +23,13 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	WorkerApplicationRepository repository;
+	WorkerApplicationRepository		repository;
+
+	@Autowired
+	AuthenticatedWorkerRepository	workerRespository;
+
+	@Autowired
+	AuthenticatedJobRepository		jobRepository;
 
 
 	@Override
@@ -35,7 +45,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "moment");
+		request.bind(entity, errors, "moment", "lastUpdate");
 
 	}
 
@@ -45,7 +55,11 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "status", "statement", "skills", "qualifications");
+		request.unbind(entity, model, "reference", "status", "statement", "skills", "qualifications", "moment", "lastUpdate");
+		Job job = entity.getJob();
+		model.setAttribute("job", job);
+		Worker worker = entity.getWorker();
+		model.setAttribute("worker", worker);
 
 	}
 
@@ -54,7 +68,21 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert request != null;
 
 		Application result = new Application();
+		Principal principal = request.getPrincipal();
+		Integer id = principal.getAccountId();
+		Worker worker = this.workerRespository.findOneWorkerBUserAccountyId(id);
 
+		Integer jobId = request.getModel().getInteger("jobId");
+		Job job = this.jobRepository.findOneJobById(jobId);
+		result.setWorker(worker);
+		result.setJob(job);
+		String jobref = job.getReference();
+		String name = principal.getUsername();
+		String name4 = name.substring(0, 4);
+		String reference = jobref + ":" + name4;
+		result.setStatus("PENDING");
+		result.setReference(reference);
+		job.getApplications().add(result);
 		return result;
 	}
 
@@ -75,6 +103,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
+		entity.setLastUpdate(moment);
 		this.repository.save(entity);
 
 	}
