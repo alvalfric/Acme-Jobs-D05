@@ -20,3 +20,5 @@ sponsor.nonCommercialBanner.form.button.return = Return
 sponsor.nonCommercialBanner.form.button.update = Update 
 sponsor.nonCommercialBanner.form.button.delete = Delete 
 sponsor.nonCommercialBanner.form.button.create = Create 
+
+sponsor.nonCommercialBanner.error.spamWords = Remove spam words !

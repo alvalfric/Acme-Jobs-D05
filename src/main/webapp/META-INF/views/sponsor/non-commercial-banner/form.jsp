@@ -9,7 +9,7 @@
 	<acme:form-textarea code="sponsor.nonCommercialBanner.form.label.picture" path="picture" />
 	<acme:form-double code="sponsor.nonCommercialBanner.form.label.jingle" path="jingle" />
 	
-	<!--<acme:form-submit test="${command == 'show'}"
+	<acme:form-submit test="${command == 'show'}"
 		code="sponsor.nonCommercialBanner.form.button.update"
 		action="/sponsor/non-commercial-banner/update"/>
 	<acme:form-submit test="${command == 'show'}"
@@ -23,6 +23,6 @@
 		action="/sponsor/non-commercial-banner/update"/>
 	<acme:form-submit test="${command == 'delete'}"
 		code="sponsor.nonCommercialBanner.form.button.delete"
-		action="/sponsor/non-commercial-banner/delete"/>-->
+		action="/sponsor/non-commercial-banner/delete"/>
 	<acme:form-return code="sponsor.nonCommercialBanner.form.button.return"/>
 </acme:form>
