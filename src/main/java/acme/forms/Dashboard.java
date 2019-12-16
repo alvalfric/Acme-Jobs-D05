@@ -2,7 +2,9 @@
 package acme.forms;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +30,18 @@ public class Dashboard implements Serializable {
 	Double						maximumRewardOfActiveOffers;
 	Double						averageRewardOfActiveOffers;
 	Double						standardDeviationOfActiveOffers;
+	Double						averageNumberOfJobsPerEmployer;
+	Double						averageNumberOfApplicationsPerEmployer;
+	Double						averageNumberOfApplicationsPerWorker;
 	String[][]					totalNumberOfCompanyRecordsGroupedBySector;
 	String[][]					totalNumberOfInvestorRecordsGroupedBySector;
-	List<List<String>>			chartCompanyInvestor;
+	List<List<String>>				chartCompanyInvestor;
+	Double						ratioOfPendingApplications;
+	Double						ratioOfRejectedApplications;
+	Double						ratioOfAcceptedApplications;
+	Double						ratioOfYesFinalModeJobs;
+	Double						ratioOfNoFinalModeJobs;
+	Map<Date, Integer>				numberOfPendingApplicationsPerDay;
+	Map<Date, Integer>				numberOfAcceptedApplicationsPerDay;
+	Map<Date, Integer>				numberOfRejectedApplicationsPerDay;
 }
