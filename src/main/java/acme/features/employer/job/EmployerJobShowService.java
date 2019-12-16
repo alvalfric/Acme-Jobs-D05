@@ -53,6 +53,7 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		model.setAttribute("descriptor", descriptor);
 		Collection<Duty> duties = descriptor.getDuties();
 		model.setAttribute("duties", duties);
+		model.setAttribute("applicationsEmpty", this.repository.findOneJobById(Integer.parseInt(model.getAttribute("id").toString())).getApplications().isEmpty());
 	}
 
 	@Override

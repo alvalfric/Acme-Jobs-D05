@@ -20,8 +20,16 @@
 	<acme:form-textbox code="description" path="description"/>
 	<acme:form-textbox code="percentage" path="percentage"/>
 	
-	<acme:form-submit test="${command == 'create'}" code="authenticated.employer.form.button.create" action="/employer/duty/create?jobId=${jobId}"/>
-	<acme:form-submit test="${command == 'show'}" code="authenticated.employer.form.button.update" action="/employer/duty/update"/>
-	<acme:form-submit test="${command == 'show'}" code="authenticated.employer.form.button.delete" action="/employer/duty/delete"/>
+	<acme:form-submit test="${command == 'create' && finalMode != true}" 
+	code="authenticated.employer.form.button.create" action="/employer/duty/create?jobId=${jobId}"/>
+	<acme:form-submit test="${command == 'show' && finalMode != true}" 
+	code="authenticated.employer.form.button.update" action="/employer/duty/update?dutyId=${dutyId}"/>
+	<acme:form-submit test="${command == 'show' && finalMode != true}" 
+	code="authenticated.employer.form.button.delete" action="/employer/duty/delete"/>
+	<acme:form-submit test="${command == 'update' && finalMode != true}" 
+	code="authenticated.employer.form.button.update" action="/employer/duty/update?dutyId=${dutyId}"/>
+	<acme:form-submit test="${command == 'update'&& finalMode != true}" 
+	code="authenticated.employer.form.button.delete" action="/employer/duty/delete"/>
+	
 	<acme:form-return code="authenticated.employer.form.button.return"/>
 </acme:form>

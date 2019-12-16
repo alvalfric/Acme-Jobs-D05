@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.jobs.Duty;
+import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
 import acme.framework.components.Errors;
 import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.components.Response;
+import acme.framework.entities.Principal;
 import acme.framework.helpers.PrincipalHelper;
 import acme.framework.services.AbstractUpdateService;
 
@@ -25,7 +27,17 @@ public class EmployerDutyUpdateService implements AbstractUpdateService<Employer
 	public boolean authorise(final Request<Duty> request) {
 		assert request != null;
 
-		return true;
+		boolean result;
+		Job job;
+		Employer employer;
+		Principal principal;
+
+		job = this.repository.findOneJobByDutyId(request.getModel().getInteger("dutyId"));
+		employer = job.getEmployer();
+		principal = request.getPrincipal();
+		result = !job.isFinalMode() && employer.getUserAccount().getId() == principal.getAccountId();
+
+		return result;
 	}
 
 	@Override
@@ -51,6 +63,32 @@ public class EmployerDutyUpdateService implements AbstractUpdateService<Employer
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		double dutyPercentage = 0;
+
+		if (!errors.hasErrors("title")) {
+			errors.state(request, !entity.getTitle().isEmpty(), "title", "title empty");
+		}
+		if (!errors.hasErrors("description")) {
+			errors.state(request, !entity.getDescription().isEmpty(), "description", "description empty");
+		}
+		if (!errors.hasErrors("percentage")) {
+			errors.state(request, entity.getPercentage() != null, "percentage", "percentage empty");
+		}
+		if (entity.getPercentage() > 100) {
+			errors.state(request, entity.getPercentage() != null, "percentage", "no mas 100 empty");
+		}
+
+		for (Duty duty : entity.getDescriptor().getDuties()) {
+			if (duty.getId() != Integer.parseInt(request.getModel().getAttribute("dutyId").toString())) {
+				dutyPercentage += duty.getPercentage();
+			}
+		}
+
+		dutyPercentage += entity.getPercentage();
+
+		if (dutyPercentage > 100.0) {
+			errors.state(request, !(dutyPercentage > 100.0), "percentage", "duties mayor de 100");
+		}
 	}
 
 	@Override
@@ -60,7 +98,7 @@ public class EmployerDutyUpdateService implements AbstractUpdateService<Employer
 		Duty result;
 		int id;
 
-		id = request.getModel().getInteger("id");
+		id = request.getModel().getInteger("dutyId");
 		result = this.repository.findOneDutyById(id);
 
 		return result;

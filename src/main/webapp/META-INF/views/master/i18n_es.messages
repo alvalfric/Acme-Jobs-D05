@@ -98,6 +98,7 @@ master.menu.authenticated.job = Trabajos
 master.menu.employer = Empleador
 master.menu.employer.job = Mis Trabajos
 master.menu.employer.application = Mis Aplicaciones
+master.menu.employer.job.create = Crear Trabajo
 
 # master.menu.worker ############################################################
 master.menu.worker = Trabajador
