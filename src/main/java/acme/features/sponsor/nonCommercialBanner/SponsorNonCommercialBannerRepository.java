@@ -28,4 +28,5 @@ public interface SponsorNonCommercialBannerRepository extends AbstractRepository
 
 	@Query("select o from CustomisationParameter o ")
 	CustomisationParameter findOneCustomisationParameterById();
+
 }
