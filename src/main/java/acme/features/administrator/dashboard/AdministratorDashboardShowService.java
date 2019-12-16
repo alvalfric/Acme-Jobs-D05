@@ -12,8 +12,11 @@
 
 package acme.features.administrator.dashboard;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +52,9 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert model != null;
 
 		request.unbind(entity, model, "totalNumberOfAnnouncements", "totalNumberOfCompanyRecords", "totalNumberOfInvestorRecords", "mininumRewardOfActiveRequests", "maximumRewardOfActiveRequests", "averageRewardOfActiveRequests",
-			"mininumRewardOfActiveOffers", "maximumRewardOfActiveOffers", "averageRewardOfActiveOffers", "totalNumberOfCompanyRecordsGroupedBySector", "totalNumberOfInvestorRecordsGroupedBySector", "chartCompanyInvestor");
+			"mininumRewardOfActiveOffers", "maximumRewardOfActiveOffers", "averageRewardOfActiveOffers", "totalNumberOfCompanyRecordsGroupedBySector", "totalNumberOfInvestorRecordsGroupedBySector", "averageNumberOfJobsPerEmployer",
+			"averageNumberOfApplicationsPerEmployer", "averageNumberOfApplicationsPerWorker", "chartCompanyInvestor", "ratioOfYesFinalModeJobs", "ratioOfNoFinalModeJobs", "ratioOfPendingApplications", "ratioOfRejectedApplications",
+			"ratioOfAcceptedApplications");
 	}
 
 	@Override
@@ -67,6 +72,9 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setMininumRewardOfActiveOffers(this.repository.mininumRewardOfActiveOffers());
 		result.setMaximumRewardOfActiveOffers(this.repository.maximumRewardOfActiveOffers());
 		result.setAverageRewardOfActiveOffers(this.repository.averageRewardOfActiveOffers());
+		result.setAverageNumberOfJobsPerEmployer(this.repository.averageNumberOfJobsPerEmployer());
+		result.setAverageNumberOfApplicationsPerEmployer(this.repository.averageNumberOfApplicationsPerEmployer());
+		result.setAverageNumberOfApplicationsPerWorker(this.repository.averageNumberOfApplicationsPerWorker());
 		result.setTotalNumberOfCompanyRecordsGroupedBySector(this.repository.countNumberOfCompanyRecordsGroupedBySector());
 		result.setTotalNumberOfInvestorRecordsGroupedBySector(this.repository.countNumberOfInvestorRecordsGroupedBySector());
 
@@ -126,6 +134,30 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		chart.add(ir_data);
 
 		result.setChartCompanyInvestor(chart);
+
+		result.setRatioOfPendingApplications(this.repository.ratioOfPendingApplications());
+		result.setRatioOfAcceptedApplications(this.repository.ratioOfAcceptedApplications());
+		result.setRatioOfRejectedApplications(this.repository.ratioOfRejectedApplications());
+		result.setRatioOfYesFinalModeJobs(this.repository.ratioOfYesFinalModeJobs());
+		result.setRatioOfNoFinalModeJobs(this.repository.ratioOfNoFinalModeJobs());
+
+		Map<Date, Integer> mP = new HashMap<Date, Integer>();
+		for (Object[] oP : this.repository.numberOfPendingApplicationsPerDay()) {
+			mP.put(Date.valueOf(String.valueOf(oP[0]).split(" ")[0].replace("<<", "")), Integer.valueOf(String.valueOf(oP[1])));
+		}
+		result.setNumberOfPendingApplicationsPerDay(mP);
+
+		Map<Date, Integer> mA = new HashMap<Date, Integer>();
+		for (Object[] oA : this.repository.numberOfAcceptedApplicationsPerDay()) {
+			mA.put(Date.valueOf(String.valueOf(oA[0]).split(" ")[0].replace("<<", "")), Integer.valueOf(String.valueOf(oA[1])));
+		}
+		result.setNumberOfAcceptedApplicationsPerDay(mA);
+
+		Map<Date, Integer> mR = new HashMap<Date, Integer>();
+		for (Object[] oR : this.repository.numberOfRejectedApplicationsPerDay()) {
+			mR.put(Date.valueOf(String.valueOf(oR[0]).split(" ")[0].replace("<<", "")), Integer.valueOf(String.valueOf(oR[1])));
+		}
+		result.setNumberOfRejectedApplicationsPerDay(mR);
 
 		return result;
 	}
