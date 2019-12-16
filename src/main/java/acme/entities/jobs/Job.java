@@ -75,4 +75,7 @@ public class Job extends DomainEntity {
 	@OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
 	private Set<@Valid Application>	applications;
 
+	@OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
+	private Collection<@Valid Auditrecord>	auditrecords;
+
 }
