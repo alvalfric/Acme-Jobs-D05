@@ -26,8 +26,19 @@
 	<acme:list-column code="administrator.dashboard.form.label.minOffers" path="mininumRewardOfActiveOffers" readonly="true" />
 	<acme:list-column code="administrator.dashboard.form.label.maxOffers" path="maximumRewardOfActiveOffers" readonly="true" />
 	<acme:list-column code="administrator.dashboard.form.label.avgOffers" path="averageRewardOfActiveOffers" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.avgJobsEmp" path="averageNumberOfJobsPerEmployer" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.avgAppsEmp" path="averageNumberOfApplicationsPerEmployer" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.avgAppsWor" path="averageNumberOfApplicationsPerWorker" readonly="true" />
 	<acme:list-column code="administrator.dashboard.form.label." path="totalNumberOfCompanyRecordsGroupedBySector" readonly="true" />
 	<acme:list-column code="administrator.dashboard.form.label." path="totalNumberOfInvestorRecordsGroupedBySector" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.ratioPendApp" path="ratioOfPendingApplications" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.ratioRejApp" path="ratioOfRejectedApplications" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.ratioAccApp" path="ratioOfAcceptedApplications" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.ratioYesFMJob" path="ratioOfYesFinalModeJobs" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.ratioNoFMJob" path="ratioOfNoFinalModeJobs" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.numberPendAppPD" path="numberOfPendingApplicationsPerDay" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.numberAccAppPD" path="numberOfAcceptedApplicationsPerDay" readonly="true" />
+	<acme:list-column code="administrator.dashboard.form.label.numberRejAppPD" path="numberOfRejectedApplicationsPerDay" readonly="true" />
 </acme:list>
 
 
