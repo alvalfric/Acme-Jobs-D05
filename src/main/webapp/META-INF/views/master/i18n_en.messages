@@ -101,6 +101,7 @@ master.menu.authenticated.job = Jobs
 master.menu.employer = Employer
 master.menu.employer.job = My Jobs
 master.menu.employer.application = My Applications
+master.menu.employer.job.create = Create Job
 
 # master.menu.worker ########################################################
 

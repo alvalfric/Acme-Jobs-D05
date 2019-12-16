@@ -1,31 +1,26 @@
 
 package acme.features.employer.job;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.jobs.Descriptor;
-import acme.entities.jobs.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
+import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Principal;
-import acme.framework.services.AbstractShowService;
+import acme.framework.services.AbstractDeleteService;
 
 @Service
-public class EmployerJobShowService implements AbstractShowService<Employer, Job> {
+public class EmployerJobDeleteService implements AbstractDeleteService<Employer, Job> {
 
 	@Autowired
-	private EmployerJobRepository repository;
+	EmployerJobRepository repository;
 
 
 	@Override
 	public boolean authorise(final Request<Job> request) {
-		assert request != null;
-
 		boolean result;
 		int jobId;
 		Job job;
@@ -36,9 +31,18 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		job = this.repository.findOneJobById(jobId);
 		employer = job.getEmployer();
 		principal = request.getPrincipal();
-		result = employer.getUserAccount().getId() == principal.getAccountId();
+		result = job.getApplications().isEmpty() && employer.getUserAccount().getId() == principal.getAccountId();
 
 		return result;
+	}
+
+	@Override
+	public void bind(final Request<Job> request, final Job entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+
+		request.bind(entity, errors);
 	}
 
 	@Override
@@ -47,13 +51,7 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "deadline");
-		request.unbind(entity, model, "id", "salary", "moreInfo", "finalMode", "descriptor.description", "descriptor.duties");
-		Descriptor descriptor = entity.getDescriptor();
-		model.setAttribute("descriptor", descriptor);
-		Collection<Duty> duties = descriptor.getDuties();
-		model.setAttribute("duties", duties);
-		model.setAttribute("applicationsEmpty", this.repository.findOneJobById(Integer.parseInt(model.getAttribute("id").toString())).getApplications().isEmpty());
+		request.unbind(entity, model, "reference", "title", "deadline", "salary", "moreInfo", "finalMode", "descriptor.description");
 	}
 
 	@Override
@@ -68,6 +66,23 @@ public class EmployerJobShowService implements AbstractShowService<Employer, Job
 		result.getDescriptor().getDuties().size();
 
 		return result;
+	}
+
+	@Override
+	public void validate(final Request<Job> request, final Job entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+	}
+
+	@Override
+	public void delete(final Request<Job> request, final Job entity) {
+		assert request != null;
+		assert entity != null;
+
+		this.repository.deleteAll(entity.getDescriptor().getDuties());
+		this.repository.delete(entity);
+		this.repository.delete(entity.getDescriptor());
 	}
 
 }
