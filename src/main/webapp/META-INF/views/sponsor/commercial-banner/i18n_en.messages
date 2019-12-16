@@ -22,5 +22,3 @@ sponsor.commercialBanner.form.button.return = Return
 sponsor.commercialBanner.form.button.update = Update 
 sponsor.commercialBanner.form.button.delete = Delete 
 sponsor.commercialBanner.form.button.create = Create 
-
-sponsor.commercialBannerr.error.spamWords = Remove spam words !

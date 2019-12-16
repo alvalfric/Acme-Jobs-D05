@@ -20,5 +20,3 @@ sponsor.nonCommercialBanner.form.button.return = Volver
 sponsor.nonCommercialBanner.form.button.update = Actualizar
 sponsor.nonCommercialBanner.form.button.delete = Borrar
 sponsor.nonCommercialBanner.form.button.create = Crear 
-
-sponsor.nonCommercialBanner.error.spampalabras= Quita palabras spam !

@@ -31,6 +31,7 @@ public class Application extends DomainEntity {
 	@NotBlank
 	@Column(unique = true)
 	@Length(min = 5, max = 23)
+	//@Pattern(regexp = "^([A-Z0-9]{1,7})-([A-Z0-9]{1,7}:([A-Z0-9]{1,7})$")
 	private String				reference;
 
 	@Temporal(TemporalType.TIMESTAMP)
