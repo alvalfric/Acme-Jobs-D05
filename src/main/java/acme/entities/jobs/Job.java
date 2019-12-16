@@ -3,9 +3,11 @@ package acme.entities.jobs;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -19,6 +21,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.entities.applications.Application;
+import acme.entities.auditrecord.Auditrecord;
 import acme.entities.roles.Employer;
 import acme.framework.datatypes.Money;
 import acme.framework.entities.DomainEntity;
@@ -70,7 +73,10 @@ public class Job extends DomainEntity {
 	@ManyToOne(optional = false)
 	private Employer						employer;
 
+	@OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
+	private Set<@Valid Application>			applications;
+
 	@OneToMany(mappedBy = "job")
-	private Collection<@Valid Application>	applications;
+	private Collection<@Valid Auditrecord>	auditrecords;
 
 }

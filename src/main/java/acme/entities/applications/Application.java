@@ -38,6 +38,10 @@ public class Application extends DomainEntity {
 	@Past
 	private Date				moment;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Past
+	private Date				lastUpdate;
+
 	@NotBlank
 	private String				status;
 
@@ -49,6 +53,8 @@ public class Application extends DomainEntity {
 
 	@NotBlank
 	private String				qualifications;
+
+	private String				rejectReason;
 
 	//Relationships ------------------------------------
 

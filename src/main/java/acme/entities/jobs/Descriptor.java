@@ -1,7 +1,7 @@
 
 package acme.entities.jobs;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,5 +30,5 @@ public class Descriptor extends DomainEntity {
 	// Relationships ------------------------------------------------------
 
 	@OneToMany(mappedBy = "descriptor", fetch = FetchType.EAGER)
-	private Collection<@Valid Duty> duties;
+	private Set<@Valid Duty> duties;
 }

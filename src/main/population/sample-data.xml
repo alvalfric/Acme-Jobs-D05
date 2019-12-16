@@ -220,7 +220,9 @@
 		<property name ="investingStatement" value="Hi I'm Lorenzo"/>
 		<property name ="stars" value="3.5"/>
 	</bean>
-  
+	
+	<!-- Commercial Banners -->
+	
   	<bean id="comBannerr01" class="acme.entities.banners.CommercialBanner">
 		<property name="slogan" value="Just do it"/>
 		<property name="targetURL" value="https://www.nike.com/"/>
@@ -228,6 +230,7 @@
 		<property name="ccValidationNumber" value="123"/>
 		<property name="ccExpirationDate" value="02/20"/>
 		<property name="picture" value="https://c.static-nike.com/a/images/t_PDP_1280_v1/f_auto/gorfwjchoasrrzr1fggt/calzado-air-max-270-nnTrqDGR.jpg"/>
+		<property name="sponsor" ref="sponsorSponsor" />
 	</bean>
 	
 	<bean id="comBannerr02" class="acme.entities.banners.CommercialBanner">
@@ -237,22 +240,27 @@
 		<property name="ccValidationNumber" value="321"/>
 		<property name="ccExpirationDate" value="03/20"/>
 		<property name="picture" value="https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201606271147"/>
+		<property name="sponsor" ref="sponsor2Sponsor" />
 	</bean>
 	
 	<bean id="comBannerr03" class="acme.entities.banners.CommercialBanner">
 		<property name="slogan" value="Because you're worth it"/>
 		<property name="targetURL" value="https://www.loreal.com/"/>
-		<property name="creditCardNumber" value="340000000000009"/>
-		<property name="ccValidationNumber" value="911"/>
-		<property name="ccExpirationDate" value="04/20"/>
+		<property name="creditCardNumber" value="4111111111111111"/>
+		<property name="ccValidationNumber" value="321"/>
+		<property name="ccExpirationDate" value="03/20"/>
 		<property name="picture" value="https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/201903/29/00123416412171____6__516x640.jpg"/>
+		<property name="sponsor" ref="sponsor2Sponsor" />
 	</bean>
+	
+	<!-- Non Commercial Banners -->
 	
 	<bean id="nonComBannerr01" class="acme.entities.banners.NonCommercialBanner">
 		<property name="slogan" value="Lovin' Beats Hating'"/>
 		<property name="targetURL" value="https://www.mcdonalds.com/us/en-us.html"/>
 		<property name="jingle" value="I'm Lovin' It"/>
 		<property name="picture" value="http://www.mcdonalds.ie/iehome/food/_jcr_content/genericpagecontent/everything/image.img.png/1548671028500.png"/>
+		<property name="sponsor" ref="sponsorSponsor" />
 	</bean>
 	
 	<bean id="nonComBannerr02" class="acme.entities.banners.NonCommercialBanner">
@@ -260,6 +268,7 @@
 		<property name="targetURL" value="https://www.danone.es/es/nuestras-marcas/danet"/>
 		<property name="jingle" value="Natillas Danone, lsitas para gustar"/>
 		<property name="picture" value="https://static.ulabox.com/media/112636_xl.jpg"/>
+		<property name="sponsor" ref="sponsor3Sponsor" />
 	</bean>
 	
 	<bean id="nonComBannerr03" class="acme.entities.banners.NonCommercialBanner">
@@ -267,6 +276,105 @@
 		<property name="targetURL" value="https://www.bicworld.com/"/>
 		<property name="jingle" value="Bic cristal escribe normal, bic naranja escribe fino"/>
 		<property name="picture" value="https://cdnb.20m.es/sites/76/2018/09/Una-docena-de-curiosidades-sobre-el-boli-BIC-que-posiblemente-no-sab%C3%ADas-.jpg"/>
+		<property name="sponsor" ref="sponsor3Sponsor" />
+	</bean>
+	
+	<!--Sponsor-->
+	
+	<!--Sponsor 1-->
+	
+	<bean name="sponsorUserAccount" class="acme.framework.entities.UserAccount">
+		<property name="username" value="sponsor"/>
+		<property name="password" value="sponsor"/>
+		<property name="enabled" value="true"/>
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Sponsor"/>
+				<property name="surname" value="One"/>
+				<property name="email" value="sponsor@acme.com"/>
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="sponsorSponsor"/>
+				<ref bean="sponsorAuthenticated"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="sponsorSponsor" class="acme.entities.roles.Sponsor">
+		<property name="company" value="Sponsor, Inc."/>
+		<property name="creditCardNumber" value="5500000000000004"/>
+		<property name="ccValidationNumber" value="123"/>
+		<property name="ccExpirationDate" value="02/20"/>
+		<property name="userAccount" ref="sponsorUserAccount"/>
+	</bean>
+
+	<bean name="sponsorAuthenticated" class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="sponsorUserAccount"/>
+	</bean>
+	
+	<!--Sponsor 2-->
+	
+	<bean name="sponsor2UserAccount" class="acme.framework.entities.UserAccount">
+		<property name="username" value="sponsor2"/>
+		<property name="password" value="sponsor2"/>
+		<property name="enabled" value="true"/>
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Sponsor"/>
+				<property name="surname" value="Two"/>
+				<property name="email" value="sponsor2@acme.com"/>
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="sponsor2Sponsor"/>
+				<ref bean="sponsor2Authenticated"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="sponsor2Sponsor" class="acme.entities.roles.Sponsor">
+		<property name="company" value="Sponsor 2, Inc."/>
+		<property name="creditCardNumber" value="4111111111111111"/>
+		<property name="ccValidationNumber" value="321"/>
+		<property name="ccExpirationDate" value="03/20"/>
+		<property name="userAccount" ref="sponsor2UserAccount"/>
+	</bean>
+
+	<bean name="sponsor2Authenticated" class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="sponsor2UserAccount"/>
+	</bean>
+		
+	<!--Sponsor 3-->
+	
+	<bean name="sponsor3UserAccount" class="acme.framework.entities.UserAccount">
+		<property name="username" value="sponsor3"/>
+		<property name="password" value="sponsor3"/>
+		<property name="enabled" value="true"/>
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Sponsor"/>
+				<property name="surname" value="Three"/>
+				<property name="email" value="sponsor3@acme.com"/>
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="sponsor3Sponsor"/>
+				<ref bean="sponsor3Authenticated"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="sponsor3Sponsor" class="acme.entities.roles.Sponsor">
+		<property name="company" value="Sponsor 3, Inc."/>
+		<property name="userAccount" ref="sponsor3UserAccount"/>
+	</bean>
+
+	<bean name="sponsor3Authenticated" class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="sponsor3UserAccount"/>
 	</bean>
 
 	<!-- Company Records -->
@@ -771,6 +879,7 @@
 	<bean name="application1" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP1-JOB1:WOR3" />
 		<property name="moment" value="2018/12/11 23:59" />
+		<property name="lastUpdate" value="2018/12/11 23:59" />
 		<property name="status" value="PENDING" />
 		<property name="statement" value="Statement example 1" />
 		<property name="skills" value="Skills example 1" />
@@ -782,6 +891,7 @@
 	<bean name="application2" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP2-JOB5:WOR2" />
 		<property name="moment" value="2019/05/11 23:59" />
+		<property name="lastUpdate" value="2019/12/01 23:59" />
 		<property name="status" value="ACCEPTED" />
 		<property name="statement" value="statement example2" />
 		<property name="skills" value="Skills example 5" />
@@ -793,17 +903,20 @@
 	<bean name="application3" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP3-JOB4:WOR2" />
 		<property name="moment" value="2019/06/11 23:59" />
+		<property name="lastUpdate" value="2019/08/05 23:59" />
 		<property name="status" value="REJECTED" />
 		<property name="statement" value="Statement example 3" />
 		<property name="skills" value="Skills example 3" />
 		<property name="qualifications" value="Qualifications example 3" />
 		<property name="worker" ref="worker2Worker" />
 		<property name="job" ref="job4" />
+		<property name="rejectReason" value="I don't care" />
     </bean>
     
     <bean name="application4" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP2-JOB3:WOR1" />
 		<property name="moment" value="2019/08/21 12:59" />
+		<property name="lastUpdate" value="2019/11/01 23:59" />
 		<property name="status" value="ACCEPTED" />
 		<property name="statement" value="Statement example 4" />
 		<property name="skills" value="Skills example 4" />
@@ -815,6 +928,7 @@
     <bean name="application5" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP1-JOB1:WOR1" />
 		<property name="moment" value="2019/03/15 16:59" />
+		<property name="lastUpdate" value="2019/03/15 16:59" />
 		<property name="status" value="PENDING" />
 		<property name="statement" value="Statement example 5" />
 		<property name="skills" value="Skills example 5" />
@@ -826,12 +940,14 @@
     <bean name="application6" class="acme.entities.applications.Application">
 		<property name="reference" value="EMP1-JOB2:WOR1" />
 		<property name="moment" value="2019/10/10 10:10" />
+		<property name="lastUpdate" value="2019/12/05 23:59" />
 		<property name="status" value="REJECTED" />
 		<property name="statement" value="Statement example 6" />
 		<property name="skills" value="Skills example 6" />
 		<property name="qualifications" value="Qualifications example 3" />
 		<property name="worker" ref="workerWorker" />
 		<property name="job" ref="job2" />
+		<property name="rejectReason" value="I don't care about this either" />
     </bean>
   
   	<!-- Messages -->
@@ -993,9 +1109,8 @@
 	
 	<!--Audit Record-->
 	
-	<!--Audit Record 1-->
 	<bean name="auditrecord1" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job1-auditor1"/>
+	  <property name="reference" value="JOB-1:AUDITOR-1"/>
 	  <property name="title" value="Title 1"/>
 	  <property name="status" value="false" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1005,7 +1120,7 @@
    	</bean>
    
    	<bean name="auditrecord2" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job2-auditor2"/>
+	  <property name="reference" value="JOB-2:AUDITOR-2"/>
 	  <property name="title" value="Title 2"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1015,7 +1130,7 @@
   	</bean>
    
 	<bean name="auditrecord3" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job2-auditor3"/>
+	  <property name="reference" value="JOB-3:AUDITOR-3"/>
 	  <property name="title" value="Title 3"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1025,7 +1140,7 @@
    	</bean>
    	   	
    	<bean name="auditrecord4" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job3.1-auditor2"/>
+	  <property name="reference" value="JOB-4:AUDITOR-4"/>
 	  <property name="title" value="Title 4"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1035,7 +1150,7 @@
    	</bean>
    
 	<bean name="auditrecord5" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job3-auditor2"/>
+	  <property name="reference" value="JOB-5:AUDITOR-5"/>
 	  <property name="title" value="Title 3"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1045,7 +1160,7 @@
    	</bean>
    	
    	<bean name="auditrecord6" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job3.2-auditor2"/>
+	  <property name="reference" value="JOB-6:AUDITOR-6"/>
 	  <property name="title" value="Title 3"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1053,7 +1168,9 @@
 	  <property name="job" ref="job3" />
 	  <property name="auditor" ref="auditor2Auditor" />
    	</bean>
+   	
    <!--  Auditors-->
+   
    <!--  Auditor 1-->
  <bean name="auditor1UserAccount" class="acme.framework.entities.UserAccount">
 		<property name="username" value="auditor1"/>
