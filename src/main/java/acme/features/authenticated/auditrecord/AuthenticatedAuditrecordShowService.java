@@ -65,7 +65,8 @@ public class AuthenticatedAuditrecordShowService implements AbstractShowService<
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "title", "moment", "status", "body");
+		request.unbind(entity, model, "reference", "title", "moment");
+		request.unbind(entity, model, "status", "body");
 
 	}
 }

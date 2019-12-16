@@ -45,7 +45,6 @@ tr:nth-child(even) {
 	<br>
 
 	<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/auditor/auditrecord/list-mine?jobId=${id}'" value="<acme:message code="auditor.job.form.button.audit-record"/>" >
-	<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/auditor/auditrecord/create?jobId=${id}'" value="<acme:message code="auditor.job.form.button.create-audit"/>" >
 	
 	<acme:form-return code="auditor.job.form.button.return"/>
 </acme:form>

@@ -20,8 +20,4 @@ auditor.auditrecord.form.label.moment= Momento
 auditor.auditrecord.form.label.status= Estado
 auditor.auditrecord.form.label.body= Cuerpo
 
-auditor.auditrecord.form.button.create = Crear
 auditor.auditrecord.form.button.return = Volver
-
-auditor.auditrecord.form.label.draft = Borrador
-auditor.auditrecord.form.label.published = Publicado
