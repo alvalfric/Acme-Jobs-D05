@@ -20,8 +20,4 @@ auditor.auditrecord.form.label.moment= Moment
 auditor.auditrecord.form.label.status= Status
 auditor.auditrecord.form.label.body= Body
 
-auditor.auditrecord.form.button.create = Create
 auditor.auditrecord.form.button.return = Return
-
-auditor.auditrecord.form.label.draft = Draft
-auditor.auditrecord.form.label.published = Published

@@ -75,6 +75,8 @@ public class AdministratorCompanyRecordUpdateService implements AbstractUpdateSe
 
 		if (this.repository.findOneCompanyRecordByCompanyName(entity.getCompanyName()) != null) {
 			companyRecordId = this.repository.findOneCompanyRecordByCompanyName(entity.getCompanyName()).getId();
+			System.out.println(companyRecordId);
+			System.out.println(entity.getId());
 			isDuplicated = companyRecordId == entity.getId();
 			errors.state(request, isDuplicated, "companyName", "administrator.company-record.error.duplicated");
 		}
