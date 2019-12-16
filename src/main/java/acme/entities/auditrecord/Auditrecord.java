@@ -46,7 +46,7 @@ public class Auditrecord extends DomainEntity {
 
 	@NotNull
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Job					job;
 
 	@NotNull

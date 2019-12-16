@@ -101,7 +101,6 @@ master.menu.authenticated.job = Jobs
 master.menu.employer = Employer
 master.menu.employer.job = My Jobs
 master.menu.employer.application = My Applications
-master.menu.employer.job.create = Create Job
 
 # master.menu.worker ########################################################
 
@@ -149,8 +148,6 @@ master.menu.user-account.employer = Employer data
 master.menu.user-account.become-employer = Become a employer
 master.menu.user-account.become-worker = Become a worker
 master.menu.user-account.worker = Worker data
-master.menu.user-account.become-sponsor= Become a sponsor
-master.menu.user-account.sponsor= Sponsor data
 
 # master.footer ###############################################################
 
