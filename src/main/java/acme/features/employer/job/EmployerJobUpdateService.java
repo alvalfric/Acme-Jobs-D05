@@ -1,9 +1,14 @@
 
 package acme.features.employer.job;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.customisationParameters.CustomisationParameter;
 import acme.entities.jobs.Duty;
 import acme.entities.jobs.Job;
 import acme.entities.roles.Employer;
@@ -117,6 +122,10 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		if (!errors.hasErrors("descriptor.description")) {
 			errors.state(request, !entity.getDescriptor().getDescription().isEmpty(), "descriptor.description", "description empty");
 		}
+
+		if (!errors.hasErrors("title")) {
+			errors.state(request, !this.isSpam(request, entity), "title", "employer.job.error.spam");
+		}
 	}
 
 	@Override
@@ -166,6 +175,30 @@ public class EmployerJobUpdateService implements AbstractUpdateService<Employer,
 		if (request.isMethod(HttpMethod.POST)) {
 			PrincipalHelper.handleUpdate();
 		}
+	}
+
+	private boolean isSpam(final Request<Job> request, final Job entity) {
+		CustomisationParameter cp = this.repository.customisationParameters();
+		Double spamThreshold = cp.getSpamThreshold();
+		List<String> spamWords = new ArrayList<String>();
+		spamWords.addAll(Arrays.asList(cp.getSpamWordsEn().toString().split(", ")));
+		spamWords.addAll(Arrays.asList(cp.getSpamWordsEs().toString().split(", ")));
+
+		int spamCounter = 0;
+		boolean isSpam = false;
+
+		for (String word : spamWords) {
+			if (entity.getTitle().contains(word)) {
+				spamCounter += 1;
+			}
+		}
+
+		if (spamCounter > 0) {
+			double spamPercentage = (double) spamCounter / entity.getTitle().split(" ").length * 100;
+			isSpam = spamPercentage >= spamThreshold;
+
+		}
+		return isSpam;
 	}
 
 }

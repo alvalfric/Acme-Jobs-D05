@@ -22,6 +22,7 @@ employer.job.error.NotBlank = Must not be blank
 employer.job.error.duplicated = There is already a job with that reference
 employer.job.error.noFinalMode = Cannot be published
 employer.job.error.pattern = Must match the pattern
+employer.job.error.spam = Title contains spam words
 
 employer.job.form.button.audit-record = Go to Audit Records
 employer.job.form.button.return = Return
