@@ -101,10 +101,7 @@ public class EmployerDutyCreateService implements AbstractCreateService<Employer
 
 		dutyPercentage += entity.getPercentage();
 
-		if (dutyPercentage < 100.0) {
-			System.out.println("menor");
-			errors.state(request, !(dutyPercentage < 100.0), "percentage", "duties menor de 100");
-		} else if (dutyPercentage > 100.0) {
+		if (dutyPercentage > 100.0) {
 			System.out.println("mayor");
 			errors.state(request, !(dutyPercentage > 100.0), "percentage", "duties mayor de 100");
 		}

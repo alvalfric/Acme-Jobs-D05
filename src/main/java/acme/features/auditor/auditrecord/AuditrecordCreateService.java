@@ -63,15 +63,15 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 
 		result.setMoment(moment);
 
-		int auditorId = request.getPrincipal().getActiveRoleId();
+		int userAccountId = request.getPrincipal().getAccountId();
 		int jobId = request.getModel().getInteger("jobId");
 
-		Auditor auditor = this.repository.findOneAuditorById(auditorId);
+		Auditor auditor = this.repository.findOneAuditorByUserAccountId(userAccountId);
 		Job job = this.repository.findOneJobById(jobId);
 
 		job.getAuditrecords().add(result);
 
-		result.setReference("JOB-" + jobId + ":AUDITOR-" + auditorId);
+		result.setReference("JOB-" + jobId + ":AUDITOR-" + auditor.getId());
 
 		result.setAuditor(auditor);
 		result.setJob(job);

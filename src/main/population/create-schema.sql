@@ -265,6 +265,15 @@
         primary key (`id`)
     ) engine=InnoDB;
 
+    create table `request_auditor` (
+       `id` integer not null,
+        `version` integer not null,
+        `firm` varchar(255),
+        `responsability_stat` varchar(255),
+        `user_account` tinyblob,
+        primary key (`id`)
+    ) engine=InnoDB;
+
     create table `requests` (
        `id` integer not null,
         `version` integer not null,
