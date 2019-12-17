@@ -4,6 +4,7 @@ package acme.entities.roles;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -31,7 +32,7 @@ public class Auditor extends UserRole {
 
 	private boolean							status;
 
-	@OneToMany(mappedBy = "auditor")
+	@OneToMany(mappedBy = "auditor", fetch = FetchType.EAGER)
 	private Collection<@Valid Auditrecord>	auditrecords;
 
 }
