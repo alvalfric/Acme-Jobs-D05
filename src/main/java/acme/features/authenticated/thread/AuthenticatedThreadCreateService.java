@@ -52,7 +52,7 @@ public class AuthenticatedThreadCreateService implements AbstractCreateService<A
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "status", "statement", "skills", "qualifications", "moment", "lastUpdate");
+		request.unbind(entity, model, "title", "moment", "creator");
 		Collection<Message> messages = entity.getMessages();
 		model.setAttribute("messages", messages);
 		Collection<Authenticated> users = entity.getUsers();
