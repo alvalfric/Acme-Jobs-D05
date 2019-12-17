@@ -312,6 +312,7 @@
         `version` integer not null,
         `moment` datetime(6),
         `title` varchar(255),
+        `creator_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -374,6 +375,9 @@ create index IDXmly5kwrpgadjkxv5t5dgw36hr on `requests` (`deadline`);
 
     alter table `requests` 
        add constraint UK_5v1h0kdr8vcps4i9e55k5gnc8 unique (`ticker`);
+
+    alter table `thread` 
+       add constraint UK_js35m2ciraqe4hhrnubmwmmmv unique (`creator_id`);
 
     alter table `user_account` 
        add constraint UK_castjbvpeeus0r8lbpehiu0e4 unique (`username`);
@@ -472,6 +476,11 @@ create index IDXmly5kwrpgadjkxv5t5dgw36hr on `requests` (`deadline`);
        add constraint FK_20xk0ev32hlg96kqynl6laie2 
        foreign key (`user_account_id`) 
        references `user_account` (`id`);
+
+    alter table `thread` 
+       add constraint `FKi6qpt5u0ti53aogdftkunyp6r` 
+       foreign key (`creator_id`) 
+       references `authenticated` (`id`);
 
     alter table `thread_authenticated` 
        add constraint `FKkuamwlt147dsxim98bfhh4dsr` 
