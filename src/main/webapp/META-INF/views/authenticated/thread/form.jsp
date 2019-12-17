@@ -32,9 +32,10 @@ tr:nth-child(even) {
 }
 </style>
 
-<acme:form readonly="true">
+<acme:form >
+	<jstl:if test= "${command != 'create'}">
 	<acme:form-textbox  code="authenticated.thread.form.label.moment" path="moment"/>
-	<acme:form-textbox code="authenticated.thread.form.label.title" path="title"/>
+	<acme:form-textbox  code="authenticated.thread.form.label.creator" path="creator.userAccount.username"/>
 	<b><acme:message code="authenticated.thread.form.label.messages"/></b>
 	<table>
 		<tr>
@@ -52,7 +53,14 @@ tr:nth-child(even) {
 		</jstl:forEach>
 	</table>
 	<br>
-
+	</jstl:if>
+	
+	<acme:form-textbox code="authenticated.thread.form.label.title" path="title"/>
+	
+	
+	<acme:form-submit test="${command == 'create'}" 
+		code="worker.application.form.button.create"
+		action="/authenticated/thread/create"/>
 	
 	<acme:form-return code="authenticated.thread.form.button.return"/>
 </acme:form>

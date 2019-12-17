@@ -29,12 +29,14 @@
 			
 	       <acme:menu-suboption code="master.menu.authenticated.announcement" action="/authenticated/announcement/list"/>
 	       <acme:menu-suboption code="master.menu.authenticated.thread" action="/authenticated/thread/list-mine"/>
+	       <acme:menu-suboption code="master.menu.authenticated.thread.create" action="/authenticated/thread/create"/>
 	       <acme:menu-suboption code="master.menu.authenticated.investorRecord.list" action="/authenticated/investor-record/list"/>
 	       <acme:menu-suboption code="master.menu.authenticated.company-records" action="/authenticated/company-record/list"/>
            <acme:menu-suboption code="master.menu.authenticated.requests" action="/authenticated/requests/list"/>
            <acme:menu-suboption code="master.menu.authenticated.challenge" action="/authenticated/challenge/list"/>
            <acme:menu-suboption code="master.menu.authenticated.offer" action="/authenticated/offer/list"/>
            <acme:menu-suboption code="master.menu.authenticated.job" action="/authenticated/job/list"/>
+           <acme:menu-suboption code="master.menu.authenticated.thread.create" action="/authenticated/thread/create"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
