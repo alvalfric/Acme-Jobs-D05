@@ -21,6 +21,11 @@ tr:nth-child(even) {
 </style>
 
 <acme:form>
+	<jstl:if test="${!canApply && principal.hasRole('acme.entities.roles.Worker')}">
+		<b><acme:message code="worker.job.form.message.applicated"/></b>
+		<br>
+		<br>
+	</jstl:if>
 	<acme:form-textbox code="authenticated.job.form.label.reference" path="reference"/>
 	<acme:form-textbox code="authenticated.job.form.label.title" path="title"/>
 	<acme:form-textbox code="authenticated.job.form.label.deadline" path="deadline"/>
@@ -43,8 +48,11 @@ tr:nth-child(even) {
 		</jstl:forEach>
 	</table>
 	<br>
-	
-	<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/employer/auditrecord/list-mine?jobId=${id}'" value="<acme:message code="authenticated.job.form.button.audit-record"/>" >
+
+	<acme:form-submit method="get" test="${canApply && principal.hasRole('acme.entities.roles.Worker')}" 
+		code="authenticated.job.form.button.application"
+		action="/worker/application/create?jobId=${id}"/>
+
 	<acme:form-return code="authenticated.job.form.button.return"/>
 </acme:form>
 
