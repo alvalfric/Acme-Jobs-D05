@@ -385,9 +385,6 @@ create index IDXmly5kwrpgadjkxv5t5dgw36hr on `requests` (`deadline`);
     alter table `requests` 
        add constraint UK_5v1h0kdr8vcps4i9e55k5gnc8 unique (`ticker`);
 
-    alter table `thread` 
-       add constraint UK_js35m2ciraqe4hhrnubmwmmmv unique (`creator_id`);
-
     alter table `user_account` 
        add constraint UK_castjbvpeeus0r8lbpehiu0e4 unique (`username`);
 
