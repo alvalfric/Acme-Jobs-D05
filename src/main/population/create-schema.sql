@@ -270,7 +270,7 @@
         `version` integer not null,
         `firm` varchar(255),
         `responsability_stat` varchar(255),
-        `user_account` tinyblob,
+        `user_account_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
 

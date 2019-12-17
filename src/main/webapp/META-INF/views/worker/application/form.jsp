@@ -32,7 +32,7 @@
 
 	<acme:form-submit test="${command == 'create'}" 
 		code="worker.application.form.button.create"
-		action="/worker/application/create?jobId=${job.id}"/>
+		action="/worker/application/create?jobId=${jobId}"/>
 
 	<acme:form-return code="worker.application.form.button.return"/>
 </acme:form>

@@ -79,7 +79,7 @@ public class AuthenticatedRequestAuditorUpdateService implements AbstractUpdateS
 		assert request != null;
 		assert entity != null;
 
-		entity.setUserAccount(this.repository.findOneUserAccountById(request.getPrincipal().getAccountId()));
+		entity.setUserAccountId(request.getPrincipal().getAccountId());
 
 		this.repository.save(entity);
 	}
