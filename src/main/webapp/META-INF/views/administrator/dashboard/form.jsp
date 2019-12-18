@@ -141,18 +141,18 @@
 			datasets : [
 				{
 					data : [
-						<jstl:if test="${!numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}">
+						<jstl:if test="${!numberOfPendingApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}">
 							<jstl:out value="${0}" escapeXml="false"/>,
 						</jstl:if>
-						<jstl:if test="${numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}">
-							<jstl:out value="${numberOfRejectedApplicationsPerDay.get(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}" escapeXml="false"/>,
+						<jstl:if test="${numberOfPendingApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}">
+							<jstl:out value="${numberOfRejectedApplicationsPerDay.get(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}" escapeXml="false"/>,
 						</jstl:if>
 						<jstl:forEach var="number" begin="1" end="28" step="1">
-							<jstl:if test="${!numberOfPendingApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}">
+							<jstl:if test="${!numberOfPendingApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}">
 								<jstl:out value="${0}" escapeXml="false"/>,
 							</jstl:if>
-							<jstl:if test="${numberOfPendingApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}">
-								<jstl:out value="${numberOfPendingApplicationsPerDay.get(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}" escapeXml="false"/>,
+							<jstl:if test="${numberOfPendingApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}">
+								<jstl:out value="${numberOfPendingApplicationsPerDay.get(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}" escapeXml="false"/>,
 							</jstl:if>
 						</jstl:forEach>
 					],
@@ -164,18 +164,18 @@
 				},
 				{
 					data : [
-						<jstl:if test="${!numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}">
+						<jstl:if test="${!numberOfAcceptedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}">
 							<jstl:out value="${0}" escapeXml="false"/>,
 						</jstl:if>
-						<jstl:if test="${numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}">
-							<jstl:out value="${numberOfRejectedApplicationsPerDay.get(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}" escapeXml="false"/>,
+						<jstl:if test="${numberOfAcceptedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}">
+							<jstl:out value="${numberOfAcceptedApplicationsPerDay.get(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}" escapeXml="false"/>,
 						</jstl:if>
 						<jstl:forEach var="number" begin="1" end="28" step="1">
-							<jstl:if test="${!numberOfAcceptedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}">
+							<jstl:if test="${!numberOfAcceptedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}">
 								<jstl:out value="${0}" escapeXml="false"/>,
 							</jstl:if>
-							<jstl:if test="${numberOfAcceptedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}">
-								<jstl:out value="${numberOfAcceptedApplicationsPerDay.get(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}" escapeXml="false"/>,
+							<jstl:if test="${numberOfAcceptedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}">
+								<jstl:out value="${numberOfAcceptedApplicationsPerDay.get(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}" escapeXml="false"/>,
 							</jstl:if>
 						</jstl:forEach>
 					],
@@ -187,18 +187,18 @@
 				},
 				{
 					data : [
-						<jstl:if test="${!numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}">
+						<jstl:if test="${!numberOfRejectedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}">
 							<jstl:out value="${0}" escapeXml="false"/>,
 						</jstl:if>
-						<jstl:if test="${numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}">
-							<jstl:out value="${numberOfRejectedApplicationsPerDay.get(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).toString()))}" escapeXml="false"/>,
+						<jstl:if test="${numberOfRejectedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}">
+							<jstl:out value="${numberOfRejectedApplicationsPerDay.get(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28))}" escapeXml="false"/>,
 						</jstl:if>
 						<jstl:forEach var="number" begin="1" end="28" step="1">
-							<jstl:if test="${!numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}">
+							<jstl:if test="${!numberOfRejectedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number).setHours(0))}">
 								<jstl:out value="${0}" escapeXml="false"/>,
 							</jstl:if>
-							<jstl:if test="${numberOfRejectedApplicationsPerDay.containsKey(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}">
-								<jstl:out value="${numberOfRejectedApplicationsPerDay.get(Date.valueOf(LocalDate.now().minusDays(Long.valueOf(28)).plusDays(Long.valueOf(number)).toString()))}" escapeXml="false"/>,
+							<jstl:if test="${numberOfRejectedApplicationsPerDay.containsKey(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}">
+								<jstl:out value="${numberOfRejectedApplicationsPerDay.get(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).setDate(Date.from(Instant.now().truncatedTo(ChronoUnit.HOURS)).getDate()-28+number))}" escapeXml="false"/>,
 							</jstl:if>
 						</jstl:forEach>
 					],
