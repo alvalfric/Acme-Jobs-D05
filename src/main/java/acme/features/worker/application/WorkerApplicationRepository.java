@@ -15,9 +15,6 @@ public interface WorkerApplicationRepository extends AbstractRepository {
 	@Query("select o from Application o where o.id = ?1")
 	Application findOneByApplicationId(int id);
 
-	@Query("select count(a) from Application a where a.worker.userAccount.id = ?1 and a.job.id = ?2")
-	int countApplicationsByUserAccountAndJob(int apId, int jobId);
-
 	@Query("select o from Application o")
 	Collection<Application> findManyAll();
 

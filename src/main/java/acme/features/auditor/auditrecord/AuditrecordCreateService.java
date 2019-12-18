@@ -73,8 +73,6 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 
 		result.setReference("JOB-" + jobId + ":AUDITOR-" + auditor.getId());
 
-		result.setStatus(true);
-
 		result.setAuditor(auditor);
 		result.setJob(job);
 
@@ -83,9 +81,6 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 
 	@Override
 	public void validate(final Request<Auditrecord> request, final Auditrecord entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
 
 		if (!errors.hasErrors("body")) {
 			errors.state(request, !entity.getBody().isEmpty(), "body", "auditor.auditrecord.error.NotBlank");

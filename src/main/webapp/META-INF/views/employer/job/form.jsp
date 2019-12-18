@@ -21,7 +21,7 @@ tr:nth-child(even) {
 </style>
 
 <acme:form>
-	<acme:form-textbox code="employer.job.form.label.reference" path="reference" placeholder="EMP1234-JOB11234"/>
+	<acme:form-textbox code="employer.job.form.label.reference" path="reference" placeholder="EMP1234-JOB1234"/>
 	<acme:form-textbox code="employer.job.form.label.title" path="title" placeholder="Example Title"/>
 	<jstl:if test= "${finalMode != true}">
 	<acme:form-select code="employer.job.form.label.status" path="finalMode">
@@ -79,7 +79,8 @@ tr:nth-child(even) {
 		code="Create duty"
 		action="/employer/duty/create?jobId=${id}"/>
 	<acme:form-submit method="get" test="${command == 'show' && finalMode == true}" 
-		code="employer.job.form.button.audit-record"
+		code="employer.job.
+          .button.audit-record"
 		action="/employer/auditrecord/list-mine?jobId=${id}"/>
 	<acme:form-submit test="${command == 'create' && finalMode != true}" 
 		code="administrator.announcement.form.button.create"
@@ -104,4 +105,3 @@ tr:nth-child(even) {
 	<%--
 	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="auditrecord/list-mine?jobId=${id}"/>
 	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="acme-jobs/employer/auditrecord/list-mine?jobId=${id}'"/>
-	--%>

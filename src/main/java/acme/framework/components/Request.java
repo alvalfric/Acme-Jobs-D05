@@ -164,7 +164,6 @@ public class Request<E> {
 		}
 
 		for (String property : inclusions) {
-			System.out.println(property);
 			assert wrapper.isReadableProperty(property);
 			value = wrapper.getPropertyValue(property);
 			model.setAttribute(property, value);

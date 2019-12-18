@@ -27,4 +27,5 @@ employer.job.error.duties.menor = El porcentaje de tareas es menor del 100%
 employer.job.error.duties.mayor = El porcentaje de tareas es mayor del 100%
 
 employer.job.form.button.audit-record = Ir a Registros de Auditoría
+
 employer.job.form.button.return = Volver

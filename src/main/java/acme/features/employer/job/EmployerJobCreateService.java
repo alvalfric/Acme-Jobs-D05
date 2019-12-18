@@ -1,4 +1,3 @@
-
 package acme.features.employer.job;
 
 import java.util.ArrayList;
@@ -56,7 +55,6 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		Job result;
 		result = new Job();
 		result.setEmployer(this.repository.findOneEmployerByUserAccountId(request.getPrincipal().getAccountId()));
-		result.setReference("EMP1234-JOB11234");
 
 		return result;
 	}

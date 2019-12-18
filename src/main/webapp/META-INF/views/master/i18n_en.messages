@@ -94,6 +94,7 @@ master.menu.authenticated.requests = Requests
 master.menu.authenticated.company-records = Company Records
 master.menu.authenticated.investorRecord.list = Investor Records
 master.menu.authenticated.thread = My Threads
+master.menu.authenticated.thread.list.created = Created Threads
 master.menu.authenticated.thread.create = Create Thread
 master.menu.authenticated.job = Jobs
 

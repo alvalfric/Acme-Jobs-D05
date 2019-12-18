@@ -91,6 +91,7 @@ master.menu.authenticated.announcement= Anuncios
 master.menu.authenticated.challenge= Desafio
 master.menu.authenticated.company-records = Registros de Empresas
 master.menu.authenticated.thread = Mis Hilos
+master.menu.authenticated.thread.list.created = Hilos Creados
 master.menu.authenticated.thread.create = Crear Hilo
 master.menu.authenticated.job = Trabajos
 

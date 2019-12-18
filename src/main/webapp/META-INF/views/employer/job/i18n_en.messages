@@ -23,8 +23,10 @@ employer.job.error.duplicated = There is already a job with that reference
 employer.job.error.noFinalMode = Cannot be published
 employer.job.error.pattern = Must match the pattern
 employer.job.error.spam = Title contains spam words
+
 employer.job.error.duties.menor = Duty percentage is lower than 100%
 employer.job.error.duties.mayor = Duty percentage is greater than 100%
 
 employer.job.form.button.audit-record = Go to Audit Records
+
 employer.job.form.button.return = Return
