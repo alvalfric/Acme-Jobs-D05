@@ -27,14 +27,10 @@ public class EmployerDutyShowService implements AbstractShowService<Employer, Du
 		Job job;
 		Employer employer;
 		Principal principal;
-
-		System.out.println(request.getModel().getInteger("dutyId"));
+    
 		job = this.repository.findOneJobByDutyId(request.getModel().getInteger("dutyId"));
 		employer = job.getEmployer();
 		principal = request.getPrincipal();
-		System.out.println(!job.isFinalMode());
-		System.out.println(employer.getUserAccount().getId());
-		System.out.println(principal.getAccountId());
 		result = employer.getUserAccount().getId() == principal.getAccountId();
 
 		return result;

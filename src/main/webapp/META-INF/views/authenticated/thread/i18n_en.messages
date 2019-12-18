@@ -31,3 +31,4 @@ authenticated.thread.form.label.user.add = Add Users
 authenticated.thread.form.add = Add
 
 
+authenticated.thread.form.button.create= Create message
