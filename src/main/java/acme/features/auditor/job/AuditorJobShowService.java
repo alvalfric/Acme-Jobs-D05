@@ -23,10 +23,9 @@ public class AuditorJobShowService implements AbstractShowService<Auditor, Job> 
 
 	@Override
 	public boolean authorise(final Request<Job> request) {
-		// TODO Auto-generated method stub
 		assert request != null;
 
-		return true;
+		return this.repository.findOneJobById(request.getModel().getInteger("id")).isFinalMode();
 	}
 
 	@Override

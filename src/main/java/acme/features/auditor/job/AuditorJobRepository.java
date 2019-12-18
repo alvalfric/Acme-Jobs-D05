@@ -22,7 +22,7 @@ public interface AuditorJobRepository extends AbstractRepository {
 	@Query("select j from Job j where j.id = ?1")
 	Job findOneJobById(int id);
 
-	@Query("select j from Job j")
+	@Query("select j from Job j where j.finalMode = 1")
 	Collection<Job> findManyAll();
 
 	@Query("select a.job from Auditrecord a where a.auditor.id= ?1 group by a.job")

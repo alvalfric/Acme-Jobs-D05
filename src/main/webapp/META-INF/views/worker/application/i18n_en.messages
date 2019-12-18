@@ -30,6 +30,10 @@ worker.application.form.button.create = Create
 
 
 worker.application.error.NotBlank = Its cannot be null
-worker.application.error.web = 
+worker.application.error.web =  URL must be http://example.com
+
+worker.application.form.placeholder.statement = Example Statement
+worker.application.form.placeholder.skills = Example Skills
+worker.application.form.placeholder.qualification = Example Qualification
 
 

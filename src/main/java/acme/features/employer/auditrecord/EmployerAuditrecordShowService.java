@@ -37,7 +37,7 @@ public class EmployerAuditrecordShowService implements AbstractShowService<Emplo
 		principal = request.getPrincipal();
 		result = employer.getUserAccount().getId() == principal.getAccountId();
 
-		return result;
+		return result && auditRecord.isStatus();
 	}
 
 	@Override

@@ -1,4 +1,3 @@
-
 package acme.features.employer.job;
 
 import java.util.ArrayList;
