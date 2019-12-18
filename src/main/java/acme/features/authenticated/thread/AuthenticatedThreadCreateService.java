@@ -101,8 +101,8 @@ public class AuthenticatedThreadCreateService implements AbstractCreateService<A
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
+		entity.getUsers().add(this.repository.findOneAuthenticatedBUserAccountyId(request.getPrincipal().getAccountId()));
 		this.repository.save(entity);
-
 	}
 
 }

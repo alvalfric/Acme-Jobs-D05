@@ -89,7 +89,6 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		spamWord.addAll(Arrays.asList(spamEn));
 		spamWord.addAll(Arrays.asList(spamEs));
 
-		System.out.println(request.getModel().getAttribute("confirm"));
 		if (request.getModel().getAttribute("confirm").toString().isEmpty()) {
 			errors.state(request, false, "confirm", "authenticated.message.error.must-confirm");
 			request.getModel().setAttribute("confirm", false);

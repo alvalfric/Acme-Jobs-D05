@@ -51,9 +51,6 @@ tr:nth-child(even) {
 				<td>${duty.title}</td>
 				<td>${duty.description}</td>
 				<td>${duty.percentage}</td>
-				<%--
-				<td><input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/employer/duty/show?dutyId=${duty.id}'" value="<acme:message code="employer.job.form.button.audit-record"/>"></td>
-				--%>
 				<jstl:if test= "${command == 'show' && descriptor.id != null && finalMode != true}">
 				<td>
 				<acme:form-submit method="get" test="${command == 'show' && descriptor.id != null && finalMode != true}" 
@@ -79,8 +76,7 @@ tr:nth-child(even) {
 		code="Create duty"
 		action="/employer/duty/create?jobId=${id}"/>
 	<acme:form-submit method="get" test="${command == 'show' && finalMode == true}" 
-		code="employer.job.
-          .button.audit-record"
+		code="employer.job.form.button.audit-record"
 		action="/employer/auditrecord/list-mine?jobId=${id}"/>
 	<acme:form-submit test="${command == 'create' && finalMode != true}" 
 		code="administrator.announcement.form.button.create"
@@ -101,7 +97,3 @@ tr:nth-child(even) {
 	--%>
 	<acme:form-return code="employer.job.form.button.return"/>	
 </acme:form>
-
-	<%--
-	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="auditrecord/list-mine?jobId=${id}"/>
-	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="acme-jobs/employer/auditrecord/list-mine?jobId=${id}'"/>
