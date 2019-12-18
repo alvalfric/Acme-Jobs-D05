@@ -3,9 +3,9 @@ package acme.entities.requestAuditors;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import acme.framework.entities.DomainEntity;
-import acme.framework.entities.UserAccount;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +22,6 @@ public class RequestAuditor extends DomainEntity {
 	@NotBlank
 	private String				responsabilityStat;
 
-	@NotBlank
-	private UserAccount			userAccount;
+	@NotNull
+	private int					userAccountId;
 }

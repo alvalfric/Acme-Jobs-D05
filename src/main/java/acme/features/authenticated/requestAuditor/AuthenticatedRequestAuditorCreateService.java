@@ -12,7 +12,6 @@ import acme.framework.components.Request;
 import acme.framework.components.Response;
 import acme.framework.entities.Authenticated;
 import acme.framework.entities.Principal;
-import acme.framework.entities.UserAccount;
 import acme.framework.helpers.PrincipalHelper;
 import acme.framework.services.AbstractCreateService;
 
@@ -31,7 +30,9 @@ public class AuthenticatedRequestAuditorCreateService implements AbstractCreateS
 	public boolean authorise(final Request<RequestAuditor> request) {
 		assert request != null;
 
-		return true;
+		Principal principal = request.getPrincipal();
+		boolean result = this.repository.countAuditorRequestByUserAccountId(principal.getAccountId()) < 1;
+		return result;
 	}
 
 	@Override
@@ -49,7 +50,9 @@ public class AuthenticatedRequestAuditorCreateService implements AbstractCreateS
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "firm", "responsabilityStat");
+		entity.setUserAccountId(request.getPrincipal().getAccountId());
+		request.unbind(entity, model, "firm", "responsabilityStat", "userAccountId");
+
 	}
 
 	@Override
@@ -58,14 +61,11 @@ public class AuthenticatedRequestAuditorCreateService implements AbstractCreateS
 		RequestAuditor result;
 
 		Principal principal;
-		int userAccountId;
-		UserAccount userAccount;
 
 		principal = request.getPrincipal();
-		userAccountId = principal.getAccountId();
-		userAccount = this.repository.findOneUserAccountById(userAccountId);
+
 		result = new RequestAuditor();
-		result.setUserAccount(userAccount);
+		result.setUserAccountId(request.getPrincipal().getAccountId());
 
 		return result;
 	}
@@ -81,6 +81,8 @@ public class AuthenticatedRequestAuditorCreateService implements AbstractCreateS
 	public void create(final Request<RequestAuditor> request, final RequestAuditor entity) {
 		assert request != null;
 		assert entity != null;
+
+		entity.setUserAccountId(request.getPrincipal().getAccountId());
 
 		this.repository.save(entity);
 	}

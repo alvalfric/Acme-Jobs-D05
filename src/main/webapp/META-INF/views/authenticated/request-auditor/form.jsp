@@ -19,8 +19,7 @@
 	<acme:form-textbox code="authenticated.auditor.form.label.firm" path="firm"/>
 	<acme:form-textbox code="authenticated.auditor.form.label.responsabilityStat" path="responsabilityStat"/>
 	
-	<acme:form-submit test="${command == 'create'}" code="authenticated.auditor.form.button.create" action="/authenticated/requestAuditor/create"/>
-	
-	<acme:form-submit test="${command == 'update'}" code="authenticated.auditor.form.button.update" action="/authenticated/requestAuditor/update"/>
+	<acme:form-submit test="${command == 'create'}" code="authenticated.auditor.form.button.create" action="/authenticated/request-auditor/create"/>
+	<acme:form-submit test="${command == 'update'}" code="authenticated.auditor.form.button.update" action="/authenticated/request-auditor/update"/>
 	<acme:form-return code="authenticated.auditor.form.button.return"/>
 </acme:form>

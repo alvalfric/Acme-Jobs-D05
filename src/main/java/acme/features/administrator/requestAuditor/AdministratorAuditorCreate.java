@@ -1,30 +1,27 @@
 
-package acme.features.authenticated.requestAuditor;
+package acme.features.administrator.requestAuditor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.requestAuditors.RequestAuditor;
+import acme.entities.roles.Auditor;
 import acme.framework.components.Errors;
 import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.components.Response;
-import acme.framework.entities.Authenticated;
-import acme.framework.entities.Principal;
+import acme.framework.entities.Administrator;
+import acme.framework.entities.UserAccount;
 import acme.framework.helpers.PrincipalHelper;
-import acme.framework.services.AbstractUpdateService;
+import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AuthenticatedRequestAuditorUpdateService implements AbstractUpdateService<Authenticated, RequestAuditor> {
-
-	// Internal state ---------------------------------------------------------
+public class AdministratorAuditorCreate implements AbstractCreateService<Administrator, RequestAuditor> {
 
 	@Autowired
-	private AuthenticatedRequestAuditorRepository repository;
+	AdministratorRequestAuditorRepository repository;
 
-
-	// AbstractUpdateService<Authenticated, Provider> interface ---------------
 
 	@Override
 	public boolean authorise(final Request<RequestAuditor> request) {
@@ -39,7 +36,7 @@ public class AuthenticatedRequestAuditorUpdateService implements AbstractUpdateS
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "userAccountId");
+		request.bind(entity, errors);
 	}
 
 	@Override
@@ -52,17 +49,14 @@ public class AuthenticatedRequestAuditorUpdateService implements AbstractUpdateS
 	}
 
 	@Override
-	public RequestAuditor findOne(final Request<RequestAuditor> request) {
+	public RequestAuditor instantiate(final Request<RequestAuditor> request) {
 		assert request != null;
 
 		RequestAuditor result;
-		Principal principal;
-		int userAccountId;
+		UserAccount ua = this.repository.findOneUserAccountById(request.getModel().getInteger("id"));
 
-		principal = request.getPrincipal();
-		userAccountId = principal.getAccountId();
-
-		result = this.repository.findOneAuditorByUserAccountId(userAccountId);
+		result = new RequestAuditor();
+		result = this.repository.findOneRequestAuditorById(request.getModel().getInteger("id"));
 
 		return result;
 	}
@@ -75,13 +69,17 @@ public class AuthenticatedRequestAuditorUpdateService implements AbstractUpdateS
 	}
 
 	@Override
-	public void update(final Request<RequestAuditor> request, final RequestAuditor entity) {
+	public void create(final Request<RequestAuditor> request, final RequestAuditor entity) {
 		assert request != null;
 		assert entity != null;
 
-		entity.setUserAccountId(request.getPrincipal().getAccountId());
+		Auditor auditor = new Auditor();
+		auditor.setFirm(entity.getFirm());
+		auditor.setResponsabilityStat(entity.getResponsabilityStat());
+		auditor.setUserAccount(this.repository.findOneUserAccountById(entity.getUserAccountId()));
 
-		this.repository.save(entity);
+		this.repository.save(auditor);
+		this.repository.delete(entity);
 	}
 
 	@Override
@@ -93,5 +91,4 @@ public class AuthenticatedRequestAuditorUpdateService implements AbstractUpdateS
 			PrincipalHelper.handleUpdate();
 		}
 	}
-
 }
