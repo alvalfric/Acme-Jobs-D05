@@ -79,8 +79,7 @@ tr:nth-child(even) {
 		code="Create duty"
 		action="/employer/duty/create?jobId=${id}"/>
 	<acme:form-submit method="get" test="${command == 'show' && finalMode == true}" 
-		code="employer.job.
-          .button.audit-record"
+		code="employer.job.form.button.audit-record"
 		action="/employer/auditrecord/list-mine?jobId=${id}"/>
 	<acme:form-submit test="${command == 'create' && finalMode != true}" 
 		code="administrator.announcement.form.button.create"
@@ -92,16 +91,5 @@ tr:nth-child(even) {
 		code="administrator.announcement.form.button.delete"
 		action="/employer/job/delete"/>
 
-
-	<%--
-	
-	<input type="button" class="btn btn-default" 
-	onclick="location.href='/acme-jobs/employer/auditrecord/list-mine?jobId=${id}'"
-	value="<acme:message code="employer.job.form.button.audit-record"/>">
-	--%>
 	<acme:form-return code="employer.job.form.button.return"/>	
 </acme:form>
-
-	<%--
-	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="auditrecord/list-mine?jobId=${id}"/>
-	<acme:form-submit method="get" code="employer.job.form.button.audit-record" action="acme-jobs/employer/auditrecord/list-mine?jobId=${id}'"/>
