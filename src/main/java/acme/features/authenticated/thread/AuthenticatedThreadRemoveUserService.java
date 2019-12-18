@@ -2,7 +2,6 @@
 package acme.features.authenticated.thread;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractUpdateService;
 
 @Service
@@ -27,6 +27,10 @@ public class AuthenticatedThreadRemoveUserService implements AbstractUpdateServi
 	@Override
 	public boolean authorise(final Request<Thread> request) {
 		assert request != null;
+		Principal principal = request.getPrincipal();
+		Integer id = request.getModel().getInteger("id");
+		Thread thread = this.repository.findOneById(id);
+		assert principal.getAccountId() == thread.getCreator().getUserAccount().getId();
 
 		return true;
 	}
@@ -76,6 +80,10 @@ public class AuthenticatedThreadRemoveUserService implements AbstractUpdateServi
 		assert entity != null;
 		assert errors != null;
 
+		Integer userId = request.getModel().getInteger("userId");
+		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
+		assert entity.getUsers().contains(user) == true;
+
 	}
 
 	@Override
@@ -83,14 +91,11 @@ public class AuthenticatedThreadRemoveUserService implements AbstractUpdateServi
 		assert request != null;
 		assert entity != null;
 
-		Date moment;
 		Integer userId = request.getModel().getInteger("userId");
 
 		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
 
 		entity.getUsers().remove(user);
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setMoment(moment);
 
 		this.repository.save(entity);
 

@@ -2,7 +2,6 @@
 package acme.features.authenticated.thread;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractUpdateService;
 
 @Service
@@ -28,7 +28,14 @@ public class AuthenticatedThreadAddUserService implements AbstractUpdateService<
 	public boolean authorise(final Request<Thread> request) {
 		assert request != null;
 
+		assert request != null;
+		Principal principal = request.getPrincipal();
+		Integer id = request.getModel().getInteger("id");
+		Thread thread = this.repository.findOneById(id);
+		assert principal.getAccountId() == thread.getCreator().getUserAccount().getId();
+
 		return true;
+
 	}
 
 	@Override
@@ -37,7 +44,7 @@ public class AuthenticatedThreadAddUserService implements AbstractUpdateService<
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "moment", "userId");
+		request.bind(entity, errors, "moment");
 
 	}
 
@@ -52,8 +59,11 @@ public class AuthenticatedThreadAddUserService implements AbstractUpdateService<
 		model.setAttribute("messages", messages);
 		Collection<Authenticated> users = entity.getUsers();
 		model.setAttribute("users", users);
-		Integer userId = request.getModel().getInteger("userId");
-		model.setAttribute("userId", userId);
+		Integer creatorId = entity.getCreator().getId();
+		model.setAttribute("creatorId", creatorId);
+		Collection<Authenticated> otherUsers = this.repository.findAllAuthenticated();
+		otherUsers.removeAll(users);
+		model.setAttribute("otherUsers", otherUsers);
 	}
 
 	@Override
@@ -76,6 +86,10 @@ public class AuthenticatedThreadAddUserService implements AbstractUpdateService<
 		assert entity != null;
 		assert errors != null;
 
+		Integer userId = request.getModel().getInteger("userId");
+		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
+		assert entity.getUsers().contains(user) == false;
+
 	}
 
 	@Override
@@ -83,14 +97,11 @@ public class AuthenticatedThreadAddUserService implements AbstractUpdateService<
 		assert request != null;
 		assert entity != null;
 
-		Date moment;
 		Integer userId = request.getModel().getInteger("userId");
 
 		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
 
 		entity.getUsers().add(user);
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setMoment(moment);
 
 		this.repository.save(entity);
 

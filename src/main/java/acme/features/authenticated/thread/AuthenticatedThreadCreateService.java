@@ -86,6 +86,10 @@ public class AuthenticatedThreadCreateService implements AbstractCreateService<A
 		assert entity != null;
 		assert errors != null;
 
+		if (!errors.hasErrors("title")) {
+			errors.state(request, !entity.getTitle().isEmpty(), "title", "javax.validation.constraints.NotBlank.message");
+		}
+
 	}
 
 	@Override

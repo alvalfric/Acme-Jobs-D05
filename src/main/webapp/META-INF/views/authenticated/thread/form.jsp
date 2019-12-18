@@ -73,6 +73,11 @@ tr:nth-child(even) {
 	</table>
 	<br>
 	<jstl:if test="${principal.getActiveRoleId() == (creatorId) }">
+	<a href = "authenticated/thread/add-user?id=${id}"><acme:message code="authenticated.thread.form.label.user.add"/></a>
+	</jstl:if>
+	</jstl:if>
+	
+	<jstl:if test="${command == 'add-user' }">
 	<acme:form-select code="authenticated.thread.form.label.user.add" path="userId">
 		<jstl:forEach var = "user" items="${otherUsers}" >
 		<acme:form-option code="${user.userAccount.username}" value="${user.userAccount.id}"/>
@@ -81,7 +86,6 @@ tr:nth-child(even) {
 	<acme:form-submit test="true" 
 		code="authenticated.thread.form.add"
 		action="/authenticated/thread/add-user"/>
-	</jstl:if>
 	</jstl:if>
 	
 	
