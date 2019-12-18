@@ -29,6 +29,7 @@
 			
 	       <acme:menu-suboption code="master.menu.authenticated.announcement" action="/authenticated/announcement/list"/>
 	       <acme:menu-suboption code="master.menu.authenticated.thread" action="/authenticated/thread/list-mine"/>
+	       <acme:menu-suboption code="master.menu.authenticated.thread.list.created" action="/authenticated/thread/list-created"/>
 	       <acme:menu-suboption code="master.menu.authenticated.thread.create" action="/authenticated/thread/create"/>
 	       <acme:menu-suboption code="master.menu.authenticated.investorRecord.list" action="/authenticated/investor-record/list"/>
 	       <acme:menu-suboption code="master.menu.authenticated.company-records" action="/authenticated/company-record/list"/>

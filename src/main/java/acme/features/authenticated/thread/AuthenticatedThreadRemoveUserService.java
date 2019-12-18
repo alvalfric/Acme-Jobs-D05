@@ -1,12 +1,7 @@
 
 package acme.features.authenticated.thread;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +13,10 @@ import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
 import acme.framework.entities.Principal;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class AuthenticatedThreadCreateService implements AbstractCreateService<Authenticated, Thread> {
+public class AuthenticatedThreadRemoveUserService implements AbstractUpdateService<Authenticated, Thread> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -32,6 +27,10 @@ public class AuthenticatedThreadCreateService implements AbstractCreateService<A
 	@Override
 	public boolean authorise(final Request<Thread> request) {
 		assert request != null;
+		Principal principal = request.getPrincipal();
+		Integer id = request.getModel().getInteger("id");
+		Thread thread = this.repository.findOneById(id);
+		assert principal.getAccountId() == thread.getCreator().getUserAccount().getId();
 
 		return true;
 	}
@@ -42,7 +41,7 @@ public class AuthenticatedThreadCreateService implements AbstractCreateService<A
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "moment");
+		request.bind(entity, errors, "moment", "userId");
 
 	}
 
@@ -52,30 +51,25 @@ public class AuthenticatedThreadCreateService implements AbstractCreateService<A
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "moment", "creator.userAccount.username");
+		request.unbind(entity, model, "title", "moment", "creator");
 		Collection<Message> messages = entity.getMessages();
 		model.setAttribute("messages", messages);
 		Collection<Authenticated> users = entity.getUsers();
 		model.setAttribute("users", users);
-		Integer creatorId = entity.getCreator().getId();
-		model.setAttribute("creatorId", creatorId);
-
+		Integer userId = request.getModel().getInteger("userId");
+		model.setAttribute("userId", userId);
 	}
 
 	@Override
-	public Thread instantiate(final Request<Thread> request) {
+	public Thread findOne(final Request<Thread> request) {
 		assert request != null;
 
-		Thread result = new Thread();
-		Principal principal = request.getPrincipal();
-		Integer id = principal.getAccountId();
-		Authenticated creator = this.repository.findOneAuthenticatedBUserAccountyId(id);
-		List<Authenticated> users = new ArrayList<Authenticated>();
-		Set<Message> messages = new HashSet<Message>();
-		result.setCreator(creator);
-		result.setUsers(users);
-		result.setMessages(messages);
-		result.setTitle("Title");
+		Thread result;
+		int id;
+
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOneById(id);
+		result.getMessages();
 
 		return result;
 	}
@@ -86,21 +80,23 @@ public class AuthenticatedThreadCreateService implements AbstractCreateService<A
 		assert entity != null;
 		assert errors != null;
 
-		if (!errors.hasErrors("title")) {
-			errors.state(request, !entity.getTitle().isEmpty(), "title", "javax.validation.constraints.NotBlank.message");
-		}
+		Integer userId = request.getModel().getInteger("userId");
+		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
+		assert entity.getUsers().contains(user) == true;
 
 	}
 
 	@Override
-	public void create(final Request<Thread> request, final Thread entity) {
+	public void update(final Request<Thread> request, final Thread entity) {
 		assert request != null;
 		assert entity != null;
 
-		Date moment;
+		Integer userId = request.getModel().getInteger("userId");
 
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setMoment(moment);
+		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
+
+		entity.getUsers().remove(user);
+
 		this.repository.save(entity);
 
 	}

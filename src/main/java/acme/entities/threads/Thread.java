@@ -41,7 +41,7 @@ public class Thread extends DomainEntity {
 
 	@NotNull
 	@Valid
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Authenticated>	users;
 
 	@NotNull
