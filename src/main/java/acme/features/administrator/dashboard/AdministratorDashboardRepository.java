@@ -13,6 +13,7 @@
 package acme.features.administrator.dashboard;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
