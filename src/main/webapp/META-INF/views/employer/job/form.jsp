@@ -30,7 +30,7 @@ tr:nth-child(even) {
 	</acme:form-select>
 	</jstl:if>
 	<jstl:if test= "${finalMode == true}">
-		<b><acme:message code="employer.job.form.label.status"/></b><b>: </b><acme:message code="employer.job.form.label.publish-published"/>
+		<b><acme:message code="employer.job.fomr.label.status"/></b><b>: </b><acme:message code="employer.job.form.label.publish-published"/>
 		<br>
 		<br>
 	</jstl:if>

@@ -1045,7 +1045,6 @@
 	<!-- Threads -->
 	
 	<bean id="thread01" class="acme.entities.threads.Thread">
-		<property name="creator" ref ="employer2Authenticated"/>
 		<property name="title" value="Sample thread 01"/>
 		<property name="moment" value="2019/10/29  11:22"/>
 		<property name="messages">
@@ -1067,7 +1066,6 @@
 	</bean>
 	
 	<bean id="thread02" class="acme.entities.threads.Thread">
-		<property name="creator" ref ="worker2Authenticated"/>
 		<property name="title" value="Sample thread 02"/>
 		<property name="moment" value="2019/09/29  11:22"/>
 		<property name="messages">
@@ -1086,7 +1084,6 @@
 	</bean>
 	
 	<bean id="thread03" class="acme.entities.threads.Thread">
-		<property name="creator" ref ="worker2Authenticated"/>
 		<property name="title" value="Sample thread 03"/>
 		<property name="moment" value="2019/08/29  11:22"/>
 		<property name="messages">

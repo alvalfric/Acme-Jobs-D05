@@ -93,11 +93,6 @@ public class EmployerJobCreateService implements AbstractCreateService<Employer,
 		if (!errors.hasErrors("salary")) {
 			errors.state(request, entity.getSalary() != null, "salary", "employer.job.error.NotBlank");
 		}
-		if (!errors.hasErrors("salary")) {
-			if (entity.getSalary().getAmount() < 0) {
-				errors.state(request, false, "salary", "employer.job.error.salary.negative");
-			}
-		}
 		if (!entity.getMoreInfo().isEmpty()) {
 			websiteOk = entity.getMoreInfo().matches(regexpUrl);
 			errors.state(request, websiteOk, "website", "eemployer.job.error.pattern", regexpUrl);

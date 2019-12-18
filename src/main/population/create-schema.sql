@@ -265,15 +265,6 @@
         primary key (`id`)
     ) engine=InnoDB;
 
-    create table `request_auditor` (
-       `id` integer not null,
-        `version` integer not null,
-        `firm` varchar(255),
-        `responsability_stat` varchar(255),
-        `user_account_id` integer not null,
-        primary key (`id`)
-    ) engine=InnoDB;
-
     create table `requests` (
        `id` integer not null,
         `version` integer not null,
@@ -321,7 +312,6 @@
         `version` integer not null,
         `moment` datetime(6),
         `title` varchar(255),
-        `creator_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -482,11 +472,6 @@ create index IDXmly5kwrpgadjkxv5t5dgw36hr on `requests` (`deadline`);
        add constraint FK_20xk0ev32hlg96kqynl6laie2 
        foreign key (`user_account_id`) 
        references `user_account` (`id`);
-
-    alter table `thread` 
-       add constraint `FKi6qpt5u0ti53aogdftkunyp6r` 
-       foreign key (`creator_id`) 
-       references `authenticated` (`id`);
 
     alter table `thread_authenticated` 
        add constraint `FKkuamwlt147dsxim98bfhh4dsr` 

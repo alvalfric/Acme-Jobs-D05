@@ -25,6 +25,8 @@ public class SponsorCommercialBannerCreateService implements AbstractCreateServi
 	public boolean authorise(final Request<CommercialBanner> request) {
 		assert request != null;
 
+		boolean result;
+
 		return true;
 	}
 

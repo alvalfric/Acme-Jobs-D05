@@ -31,9 +31,7 @@ public class AuthenticatedAuditorCreateService implements AbstractCreateService<
 	public boolean authorise(final Request<Auditor> request) {
 		assert request != null;
 
-		Principal principal = request.getPrincipal();
-		boolean result = principal.getAccountId() == this.repository.findOneAuditorByUserAccountId(principal.getAccountId()).getUserAccount().getId();
-		return !result;
+		return true;
 	}
 
 	@Override

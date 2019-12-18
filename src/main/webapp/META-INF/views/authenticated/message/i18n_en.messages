@@ -20,4 +20,9 @@ authenticated.message.form.label.tags = Tags
 authenticated.message.form.label.user = User
 authenticated.message.form.label.moment = Moment
 authenticated.message.form.button.return = Return
+authenticated.message.form.label.confirm = confirm
 
+authenticated.message.form.button.create= Create
+
+authenticated.message.error.must-confirm= You must confirm create message
+authenticated.message.error.spamWords = Remove spam words
