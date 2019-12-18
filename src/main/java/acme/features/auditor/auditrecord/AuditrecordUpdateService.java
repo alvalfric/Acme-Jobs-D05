@@ -1,8 +1,6 @@
 
 package acme.features.auditor.auditrecord;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +10,11 @@ import acme.entities.roles.Auditor;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.entities.Principal;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class AuditrecordCreateService implements AbstractCreateService<Auditor, Auditrecord> {
+public class AuditrecordUpdateService implements AbstractUpdateService<Auditor, Auditrecord> {
 
 	@Autowired
 	AuditrecordRepository repository;
@@ -25,7 +24,17 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 	public boolean authorise(final Request<Auditrecord> request) {
 		assert request != null;
 
-		return true;
+		boolean result;
+		int audRecId;
+		Auditrecord auditRecord;
+		Principal principal;
+
+		audRecId = request.getModel().getInteger("id");
+		auditRecord = this.repository.findOneAuditrecordById(audRecId);
+		principal = request.getPrincipal();
+
+		result = auditRecord.getAuditor().getId() == principal.getActiveRoleId();
+		return result;
 	}
 
 	@Override
@@ -35,6 +44,7 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 		assert errors != null;
 
 		request.bind(entity, errors, "moment");
+
 	}
 
 	@Override
@@ -50,33 +60,13 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 		model.setAttribute("auditor", auditor);
 		job.getApplications().size();
 		job.getAuditrecords().size();
+
 	}
 
 	@Override
-	public Auditrecord instantiate(final Request<Auditrecord> request) {
-		assert request != null;
+	public Auditrecord findOne(final Request<Auditrecord> request) {
 
-		Auditrecord result = new Auditrecord();
-
-		Date moment;
-		moment = new Date(System.currentTimeMillis() - 1);
-
-		result.setMoment(moment);
-
-		int userAccountId = request.getPrincipal().getAccountId();
-		int jobId = request.getModel().getInteger("jobId");
-
-		Auditor auditor = this.repository.findOneAuditorByUserAccountId(userAccountId);
-		Job job = this.repository.findOneJobById(jobId);
-
-		job.getAuditrecords().add(result);
-
-		result.setReference("JOB-" + jobId + ":AUDITOR-" + auditor.getId());
-
-		result.setAuditor(auditor);
-		result.setJob(job);
-
-		return result;
+		return this.repository.findOneAuditrecordById(request.getModel().getInteger("id"));
 	}
 
 	@Override
@@ -98,16 +88,12 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 	}
 
 	@Override
-	public void create(final Request<Auditrecord> request, final Auditrecord entity) {
+	public void update(final Request<Auditrecord> request, final Auditrecord entity) {
 		assert request != null;
 		assert entity != null;
 
-		Date moment;
-		moment = new Date(System.currentTimeMillis() - 1);
-
-		entity.setMoment(moment);
-
 		this.repository.save(entity);
+
 	}
 
 }

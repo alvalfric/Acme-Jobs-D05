@@ -30,4 +30,8 @@ worker.application.form.button.create = Crear
 
 
 worker.application.error.NotBlank = Its cannot be null
-worker.application.error.web = 
+worker.application.error.web = URL debe estar escrito como http://example.com
+
+worker.application.form.label.statement = Introduce Declaración
+worker.application.form.label.skills = Introduce habilidades
+worker.application.form.label.qualification = Introduce tus cualificaciones

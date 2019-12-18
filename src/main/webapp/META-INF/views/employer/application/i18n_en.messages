@@ -35,4 +35,5 @@ employer.application.form.button.create = Create
 employer.application.error.notBlank = If rejected, reason cannot be null
 employer.application.error.web = 
 
+employer.application.form.placeholder.rejectReason = Insert Reject Reason
 

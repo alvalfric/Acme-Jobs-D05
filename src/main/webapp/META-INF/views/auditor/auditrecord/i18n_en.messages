@@ -22,6 +22,10 @@ auditor.auditrecord.form.label.body= Body
 
 auditor.auditrecord.form.button.create = Create
 auditor.auditrecord.form.button.return = Return
+auditor.auditrecord.form.button.update = Update
 
 auditor.auditrecord.form.label.draft = Draft
 auditor.auditrecord.form.label.published = Published
+
+auditor.auditrecord.form.placeholder.title = Título Auditoría
+auditor.auditrecord.form.placeholder.body = Cuerpo Auditoría

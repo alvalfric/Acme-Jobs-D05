@@ -34,3 +34,5 @@ employer.application.form.button.create = Create
 
 employer.application.error.notBlank = Si se rechaza, la razón no puede ser nula
 employer.application.error.web = 
+
+employer.application.form.placeholder.rejectReason = Introduce la razón del rechazo
