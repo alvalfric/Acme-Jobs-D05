@@ -36,7 +36,6 @@
            <acme:menu-suboption code="master.menu.authenticated.challenge" action="/authenticated/challenge/list"/>
            <acme:menu-suboption code="master.menu.authenticated.offer" action="/authenticated/offer/list"/>
            <acme:menu-suboption code="master.menu.authenticated.job" action="/authenticated/job/list"/>
-           <acme:menu-suboption code="master.menu.authenticated.thread.create" action="/authenticated/thread/create"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">

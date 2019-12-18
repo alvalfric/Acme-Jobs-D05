@@ -22,9 +22,9 @@
 	<acme:form-moment  code="worker.application.form.label.lastUpdate" path="lastUpdate"/>	
 	<acme:form-textbox  code="worker.application.form.label.status" path="status"/>
 	</jstl:if>
-	<acme:form-textarea  code="worker.application.form.label.statement" path="statement" />
-	<acme:form-textarea  code="worker.application.form.label.skills" path="skills"/>
-	<acme:form-textarea code="worker.application.form.label.qualifications" path="qualifications"/>
+	<acme:form-textarea  code="worker.application.form.label.statement" path="statement" placeholder ="Example statement"/>
+	<acme:form-textarea  code="worker.application.form.label.skills" path="skills" placeholder = "Example Skills" />
+	<acme:form-textarea code="worker.application.form.label.qualifications" path="qualifications" placeholder = "Example Qualification" />
 	
 	<jstl:if test="${status == 'REJECTED'}">
 		<acme:form-textarea  code="employer.application.form.label.rejectReason" path="rejectReason" readonly="true"/>

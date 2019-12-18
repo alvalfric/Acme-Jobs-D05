@@ -33,11 +33,11 @@
 	<acme:form-textbox  code="employer.application.form.label.qualifications" path="qualifications" readonly="true"/>
 	
 	<jstl:if test="${status == 'REJECTED' && command == 'show'}">
-		<acme:form-textarea  code="employer.application.form.label.rejectReason" path="rejectReason" readonly="true"/>
+		<acme:form-textarea  code="employer.application.form.label.rejectReason" path="rejectReason" readonly="true" placeholder="Reject Reason"/>
 	</jstl:if>
 	
 	<jstl:if test="${status == 'PENDING' || command == 'update'}">
-		<acme:form-textarea  code="employer.application.form.label.rejectReason" path="rejectReason" readonly="false"/>
+		<acme:form-textarea  code="employer.application.form.label.rejectReason" path="rejectReason" readonly="false" placeholder="Reject Reason"/>
 	</jstl:if>
 	
 	<acme:form-submit test="${status == 'PENDING' || command == 'update'}" 

@@ -73,6 +73,8 @@ public class AuditrecordCreateService implements AbstractCreateService<Auditor, 
 
 		result.setReference("JOB-" + jobId + ":AUDITOR-" + auditor.getId());
 
+		result.setStatus(true);
+
 		result.setAuditor(auditor);
 		result.setJob(job);
 

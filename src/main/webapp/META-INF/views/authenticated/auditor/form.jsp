@@ -16,8 +16,8 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="authenticated.auditor.form.label.firm" path="firm"/>
-	<acme:form-textbox code="authenticated.auditor.form.label.responsabilityStat" path="responsabilityStat"/>
+	<acme:form-textbox code="authenticated.auditor.form.label.firm" path="firm" placeholder="Auditor Company"/>
+	<acme:form-textbox code="authenticated.auditor.form.label.responsabilityStat" path="responsabilityStat" placeholder="Responsability Statement"/>
 	
 	<acme:form-submit test="${command == 'create'}" code="authenticated.auditor.form.button.create" action="/authenticated/auditor/create"/>
 	
