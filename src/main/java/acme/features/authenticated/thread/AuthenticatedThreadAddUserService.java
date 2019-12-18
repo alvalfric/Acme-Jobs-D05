@@ -1,7 +1,6 @@
 
 package acme.features.authenticated.thread;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,38 +8,44 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.threads.Message;
 import acme.entities.threads.Thread;
+import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
 import acme.framework.entities.Principal;
-import acme.framework.services.AbstractShowService;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class AuthenticatedThreadShowService implements AbstractShowService<Authenticated, Thread> {
+public class AuthenticatedThreadAddUserService implements AbstractUpdateService<Authenticated, Thread> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedThreadRepository repository;
+	AuthenticatedThreadRepository repository;
 
-
-	// AbstractShowService<Authenticated, Announcement> interface -------------
 
 	@Override
 	public boolean authorise(final Request<Thread> request) {
 		assert request != null;
+
+		assert request != null;
 		Principal principal = request.getPrincipal();
 		Integer id = request.getModel().getInteger("id");
-		Thread result = this.repository.findOneById(id);
-		Collection<Authenticated> users = result.getUsers();
-		Collection<Integer> userAccounts = new ArrayList<Integer>();
-		for (Authenticated user : users) {
-			userAccounts.add(user.getUserAccount().getId());
-		}
-
-		assert principal.getAccountId() == result.getCreator().getUserAccount().getId() || userAccounts.contains(principal.getAccountId());
+		Thread thread = this.repository.findOneById(id);
+		assert principal.getAccountId() == thread.getCreator().getUserAccount().getId();
 
 		return true;
+
+	}
+
+	@Override
+	public void bind(final Request<Thread> request, final Thread entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+
+		request.bind(entity, errors, "moment");
+
 	}
 
 	@Override
@@ -49,7 +54,7 @@ public class AuthenticatedThreadShowService implements AbstractShowService<Authe
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "moment", "creator.userAccount.username");
+		request.unbind(entity, model, "title", "moment", "creator");
 		Collection<Message> messages = entity.getMessages();
 		model.setAttribute("messages", messages);
 		Collection<Authenticated> users = entity.getUsers();
@@ -59,7 +64,6 @@ public class AuthenticatedThreadShowService implements AbstractShowService<Authe
 		Collection<Authenticated> otherUsers = this.repository.findAllAuthenticated();
 		otherUsers.removeAll(users);
 		model.setAttribute("otherUsers", otherUsers);
-
 	}
 
 	@Override
@@ -74,6 +78,33 @@ public class AuthenticatedThreadShowService implements AbstractShowService<Authe
 		result.getMessages();
 
 		return result;
+	}
+
+	@Override
+	public void validate(final Request<Thread> request, final Thread entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+
+		Integer userId = request.getModel().getInteger("userId");
+		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
+		assert entity.getUsers().contains(user) == false;
+
+	}
+
+	@Override
+	public void update(final Request<Thread> request, final Thread entity) {
+		assert request != null;
+		assert entity != null;
+
+		Integer userId = request.getModel().getInteger("userId");
+
+		Authenticated user = this.repository.findOneAuthenticatedBUserAccountyId(userId);
+
+		entity.getUsers().add(user);
+
+		this.repository.save(entity);
+
 	}
 
 }

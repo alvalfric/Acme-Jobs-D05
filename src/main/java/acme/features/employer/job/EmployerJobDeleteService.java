@@ -73,6 +73,10 @@ public class EmployerJobDeleteService implements AbstractDeleteService<Employer,
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		if (!entity.getApplications().isEmpty()) {
+			errors.state(request, entity.getApplications().isEmpty(), "reference", "employer.job.error.hasApplications");
+		}
 	}
 
 	@Override

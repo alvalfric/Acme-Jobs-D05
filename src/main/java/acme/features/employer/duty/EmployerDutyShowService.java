@@ -1,4 +1,5 @@
 
+
 package acme.features.employer.duty;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class EmployerDutyShowService implements AbstractShowService<Employer, Du
 		Job job;
 		Employer employer;
 		Principal principal;
-
+    
 		job = this.repository.findOneJobByDutyId(request.getModel().getInteger("dutyId"));
 		employer = job.getEmployer();
 		principal = request.getPrincipal();
@@ -64,3 +65,4 @@ public class EmployerDutyShowService implements AbstractShowService<Employer, Du
 	}
 
 }
+
