@@ -20,6 +20,7 @@
 	<acme:form-textbox code="authenticated.message.form.label.title" path="title"/>
 	<acme:form-textbox code="authenticated.message.form.label.tags" path="tags"/>
 	<acme:form-textbox code="authenticated.message.form.label.body" path="body"/>
+	<acme:form-checkbox code="authenticated.message.form.label.confirm" path="confirm"/>
 	
 	
 	<acme:form-submit test="${command == 'create'}" code="authenticated.message.form.button.create" action="/authenticated/message/create?threadid=${threadid}"/>

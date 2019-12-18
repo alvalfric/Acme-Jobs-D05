@@ -1,13 +1,17 @@
 
 package acme.features.authenticated.message;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.customisationParameters.CustomisationParameter;
 import acme.entities.threads.Message;
 import acme.framework.components.Errors;
+import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -48,6 +52,12 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		request.unbind(entity, model, "title", "body", "tags", "moment", "user");
 
 		model.setAttribute("threadid", request.getModel().getAttribute("threadid"));
+		if (request.isMethod(HttpMethod.GET)) {
+			model.setAttribute("confirm", "false");
+		} else {
+			request.transfer(model, "confirm");
+		}
+
 	}
 
 	@Override
@@ -78,6 +88,30 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		boolean isConfirmed;
+
+		CustomisationParameter s = this.repository.findOneCustomisationParameterById();
+
+		String[] spamEn = s.getSpamWordsEn().toString().split(", ");
+		String[] spamEs = s.getSpamWordsEs().toString().split(",");
+
+		List<String> spamWord = new ArrayList<String>();
+		spamWord.addAll(Arrays.asList(spamEn));
+		spamWord.addAll(Arrays.asList(spamEs));
+
+		isConfirmed = request.getModel().getBoolean("confirm");
+		errors.state(request, isConfirmed, "confirm", "authenticated.message.error.must-confirm");
+
+		if (entity.getTitle() != null) {
+			errors.state(request, !this.existeWordSpam(spamWord, entity.getTitle()), "title", "authenticated.message.error.spamWords");
+		}
+		if (entity.getBody() != null) {
+			errors.state(request, !this.existeWordSpam(spamWord, entity.getBody()), "body", "authenticated.message.error.spamWords");
+		}
+		if (entity.getTags() != null) {
+			errors.state(request, !this.existeWordSpam(spamWord, entity.getTags()), "tags", "authenticated.message.error.spamWords");
+		}
 	}
 
 	@Override
@@ -88,4 +122,18 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		this.repository.save(entity);
 	}
 
+	public Boolean existeWordSpam(final List<String> lista, final String text) {
+		int spamconter = 0;
+		boolean res = false;
+		for (String word : lista) {
+			if (text.contains(word)) {
+				spamconter += 1;
+			}
+		}
+		if (spamconter > 0) {
+
+			res = true;
+		}
+		return res;
+	}
 }
