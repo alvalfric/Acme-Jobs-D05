@@ -28,13 +28,11 @@ public class AuthenticatedThreadAddUserService implements AbstractUpdateService<
 	public boolean authorise(final Request<Thread> request) {
 		assert request != null;
 
-		assert request != null;
 		Principal principal = request.getPrincipal();
 		Integer id = request.getModel().getInteger("id");
 		Thread thread = this.repository.findOneById(id);
-		assert principal.getAccountId() == thread.getCreator().getUserAccount().getId();
 
-		return true;
+		return principal.getAccountId() == thread.getCreator().getUserAccount().getId();
 
 	}
 

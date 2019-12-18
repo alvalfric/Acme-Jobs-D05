@@ -16,16 +16,16 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="administrator.user-account.form.label.username" path="username" readonly="true"/>
-	<acme:form-textarea code="administrator.user-account.form.label.name" path="firm" readonly="true"/>
-	<acme:form-textarea code="administrator.user-account.form.label.surname" path="responsabilityStat" readonly="true"/>
+	<acme:form-textbox code="administrator.form.request-auditor.label.username" path="username" readonly="true"/>
+	<acme:form-textarea code="administrator.form.request-auditor.label.firm" path="firm" readonly="true"/>
+	<acme:form-textarea code="administrator.form.request-auditor.label.statement" path="responsabilityStat" readonly="true"/>
 	
-	<acme:form-submit test="${command == 'show'}" 
-		code="Aceptar"
+	<acme:form-submit
+		code="administrator.form.request-auditor.label.accept"
 		action="/administrator/request-auditor/create"/>
-	<acme:form-submit test="${command == 'create'}" 
-		code="Aceptar"
-		action="/administrator/request-auditor/create"/>
+	<acme:form-submit
+		code="administrator.form.request-auditor.label.deny"
+		action="/administrator/request-auditor/delete"/>
 	
-  	<acme:form-return code="administrator.user-account.form.button.return"/>
+  	<acme:form-return code="administrator.form.request-auditor.label.return"/>
 </acme:form>

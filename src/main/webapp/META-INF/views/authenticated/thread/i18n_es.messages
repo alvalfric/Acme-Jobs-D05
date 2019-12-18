@@ -28,4 +28,7 @@ authenticated.thread.form.remove = Eliminar
 authenticated.thread.form.button.create = Crear
 authenticated.thread.form.label.user.add = Añadir Usuarios
 authenticated.thread.form.add = Añadir
+authenticated.thread.form.button.add-message = Añadir Mensaje
+
+authenticated.thread.form.remove.user = Vas a eliminar al siguiente usuario de este hilo:
 

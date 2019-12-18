@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import acme.entities.threads.Thread;
 import acme.framework.entities.Authenticated;
+import acme.framework.entities.UserAccount;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
 public interface AuthenticatedThreadRepository extends AbstractRepository {
+
+	@Query("select ua from UserAccount ua where ua.id = ?1")
+	UserAccount findOneUserByAccountId(int id);
 
 	@Query("select t from Thread t where t.id = ?1")
 	Thread findOneById(int id);

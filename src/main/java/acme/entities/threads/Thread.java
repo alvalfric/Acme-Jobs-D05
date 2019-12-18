@@ -37,17 +37,17 @@ public class Thread extends DomainEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
 
-	@NotNull
-	@Valid
-	@ManyToOne(optional = false)
-	private Authenticated		creator;
-
 	// Relationships---------------------------------------------------------------------
 
 	@NotNull
 	@Valid
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Authenticated>	users;
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Authenticated		creator;
 
 	@OneToMany(mappedBy = "thread", fetch = FetchType.EAGER)
 	private Set<@Valid Message>	messages;

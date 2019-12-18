@@ -38,9 +38,7 @@ public class AuthenticatedThreadShowService implements AbstractShowService<Authe
 			userAccounts.add(user.getUserAccount().getId());
 		}
 
-		assert principal.getAccountId() == result.getCreator().getUserAccount().getId() || userAccounts.contains(principal.getAccountId());
-
-		return true;
+		return principal.getAccountId() == result.getCreator().getUserAccount().getId() || userAccounts.contains(principal.getAccountId());
 	}
 
 	@Override

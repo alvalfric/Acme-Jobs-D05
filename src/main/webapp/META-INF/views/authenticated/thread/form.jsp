@@ -39,7 +39,7 @@ tr:nth-child(even) {
 	</jstl:if>
 	<jstl:if test= "${command == 'show'}">
 	<acme:form-textbox  code="authenticated.thread.form.label.moment" path="moment"/>
-	<acme:form-textbox code="authenticated.thread.form.label.title" path="title"/>
+	<acme:form-textbox  code="authenticated.thread.form.label.creator" path="creator.userAccount.username"/>
 	<b><acme:message code="authenticated.thread.form.label.messages"/></b>
 	<table>
 		<tr>
@@ -57,7 +57,6 @@ tr:nth-child(even) {
 		</jstl:forEach>
 	</table>
 	<br>
-
 	<b><acme:message code="authenticated.thread.form.label.users"/></b>
 	<table>
 		<tr>
@@ -74,7 +73,9 @@ tr:nth-child(even) {
 	</table>
 	<br>
 	<jstl:if test="${principal.getActiveRoleId() == (creatorId) }">
-	<a href = "authenticated/thread/add-user?id=${id}"><acme:message code="authenticated.thread.form.label.user.add"/></a>
+	<acme:form-submit method="get" 
+		code="authenticated.thread.form.label.user.add"
+		action="/authenticated/thread/add-user?id=${id}"/>
 	</jstl:if>
 	</jstl:if>
 	
@@ -90,6 +91,13 @@ tr:nth-child(even) {
 	</jstl:if>
 	
 	
+	<acme:form-submit method="get" test="${command == 'show'}" code="authenticated.thread.form.button.add-message" action="/authenticated/message/create?threadid=${id}"/>
+		
+	<jstl:if test="${command == 'remove-user'}" >
+		<b><acme:message code="authenticated.thread.form.remove.user"/> <jstl:out value="${removeUsername}" /></b>
+		<br>
+		<br>
+	</jstl:if>
 	<acme:form-submit test="${command == 'remove-user'}" 
 		code="authenticated.thread.form.remove"
 		action="/authenticated/thread/remove-user?id=${id}&userId=${userId}"/>

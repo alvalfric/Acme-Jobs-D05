@@ -30,9 +30,8 @@ public class AuthenticatedThreadRemoveUserService implements AbstractUpdateServi
 		Principal principal = request.getPrincipal();
 		Integer id = request.getModel().getInteger("id");
 		Thread thread = this.repository.findOneById(id);
-		assert principal.getAccountId() == thread.getCreator().getUserAccount().getId();
 
-		return true;
+		return principal.getAccountId() == thread.getCreator().getUserAccount().getId();
 	}
 
 	@Override
@@ -58,6 +57,8 @@ public class AuthenticatedThreadRemoveUserService implements AbstractUpdateServi
 		model.setAttribute("users", users);
 		Integer userId = request.getModel().getInteger("userId");
 		model.setAttribute("userId", userId);
+		String removeUsername = this.repository.findOneUserByAccountId(userId).getUsername();
+		model.setAttribute("removeUsername", removeUsername);
 	}
 
 	@Override
