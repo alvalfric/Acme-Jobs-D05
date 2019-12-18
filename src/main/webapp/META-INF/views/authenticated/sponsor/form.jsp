@@ -16,10 +16,10 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="authenticated.sponsor.form.label.company" path="company"/>
-	<acme:form-textbox code="authenticated.sponsor.form.label.creditCardNumber" path="creditCardNumber"/>
-	<acme:form-textbox code="authenticated.sponsor.form.label.ccExpirationDate" path="ccExpirationDate"/>
-	<acme:form-textbox code="authenticated.sponsor.form.label.ccValidationNumber" path="ccValidationNumber"/>
+	<acme:form-textbox code="authenticated.sponsor.form.label.company" path="company" placeholder="Company S.L"/>
+	<acme:form-textbox code="authenticated.sponsor.form.label.creditCardNumber" path="creditCardNumber" placeholder="4929280904778"/>
+	<acme:form-textbox code="authenticated.sponsor.form.label.ccExpirationDate" path="ccExpirationDate" placeholder="22/2"/>
+	<acme:form-textbox code="authenticated.sponsor.form.label.ccValidationNumber" path="ccValidationNumber" placeholder= "900"/>
 	
 	<acme:form-submit test="${command == 'create'}" code="authenticated.sponsor.form.button.create" action="/authenticated/sponsor/create"/>
 	

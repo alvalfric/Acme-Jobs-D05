@@ -17,11 +17,10 @@
 
 <acme:form>
 	<acme:form-textbox  code="authenticated.message.form.label.moment" path="moment"/>
-	<acme:form-textbox code="authenticated.message.form.label.title" path="title"/>
-	<acme:form-textbox code="authenticated.message.form.label.tags" path="tags"/>
-	<acme:form-textbox code="authenticated.message.form.label.body" path="body"/>
-	<acme:form-checkbox code="authenticated.message.form.label.confirm" path="confirm"/>
-	
+	<acme:form-textbox code="authenticated.message.form.label.title" path="title" placeholder="Title"/>
+	<acme:form-textbox code="authenticated.message.form.label.user" path="user.userAccount.username"/>
+	<acme:form-textbox code="authenticated.message.form.label.tags" path="tags" placeholder="Tags"/>
+	<acme:form-textbox code="authenticated.message.form.label.body" path="body" placeholder= "Body Text"/>
 	
 	<acme:form-submit test="${command == 'create'}" code="authenticated.message.form.button.create" action="/authenticated/message/create?threadid=${threadid}"/>
 	<acme:form-return code="authenticated.message.form.button.return"/>

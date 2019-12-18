@@ -16,9 +16,9 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="title" path="title"/>
-	<acme:form-textbox code="description" path="description"/>
-	<acme:form-textbox code="percentage" path="percentage"/>
+	<acme:form-textbox code="title" path="title" placeholder="Example Title"/>
+	<acme:form-textbox code="description" path="description" placeholder="Example Description"/>
+	<acme:form-textbox code="percentage" path="percentage" placeholder="30"/>
 	
 	<acme:form-submit test="${command == 'create' && finalMode != true}" 
 	code="authenticated.employer.form.button.create" action="/employer/duty/create?jobId=${jobId}"/>

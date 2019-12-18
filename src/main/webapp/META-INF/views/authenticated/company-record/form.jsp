@@ -17,8 +17,8 @@
 
 <acme:form readonly="true">
 	
-	<acme:form-textbox code="authenticated.company-record.form.label.companyName" path="companyName"/>
-	<acme:form-textbox code="authenticated.company-record.form.label.sector" path="sector"/>
+	<acme:form-textbox code="authenticated.company-record.form.label.companyName" path="companyName" />
+	<acme:form-textbox code="authenticated.company-record.form.label.sector" path="sector" />
 	<acme:form-textbox code="authenticated.company-record.form.label.CEOName" path="CEOName"/>
 	<acme:form-textarea code="authenticated.company-record.form.label.activitiesDescription" path="activitiesDescription"/>		
 	<acme:form-url code="authenticated.company-record.form.label.website" path="website"/>		
