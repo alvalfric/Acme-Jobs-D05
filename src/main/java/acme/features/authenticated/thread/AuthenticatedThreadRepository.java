@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.threads.Thread;
+import acme.framework.entities.Authenticated;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
@@ -29,5 +30,5 @@ public interface AuthenticatedThreadRepository extends AbstractRepository {
 
 	@Query("select a from Authenticated a where a.userAccount.id = ?1")
 	Authenticated findOneAuthenticatedBUserAccountyId(int id);
-  
+
 }

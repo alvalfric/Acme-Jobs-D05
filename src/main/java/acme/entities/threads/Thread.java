@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +36,11 @@ public class Thread extends DomainEntity {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				moment;
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Authenticated		creator;
 
 	// Relationships---------------------------------------------------------------------
 

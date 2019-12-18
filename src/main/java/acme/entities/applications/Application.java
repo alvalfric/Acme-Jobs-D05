@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -31,7 +32,7 @@ public class Application extends DomainEntity {
 	@NotBlank
 	@Column(unique = true)
 	@Length(min = 5, max = 23)
-	//@Pattern(regexp = "^([A-Z0-9]{1,7})-([A-Z0-9]{1,7}:([A-Z0-9]{1,7})$")
+	@Pattern(regexp = "^([A-Z0-9]{1,7}-[A-Z0-9]{1,7}:[A-Z0-9]{1,7})$")
 	private String				reference;
 
 	@Temporal(TemporalType.TIMESTAMP)
