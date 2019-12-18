@@ -1045,6 +1045,7 @@
 	<!-- Threads -->
 	
 	<bean id="thread01" class="acme.entities.threads.Thread">
+		<property name="creator" ref ="employer2Authenticated"/>
 		<property name="title" value="Sample thread 01"/>
 		<property name="moment" value="2019/10/29  11:22"/>
 		<property name="messages">
@@ -1066,6 +1067,7 @@
 	</bean>
 	
 	<bean id="thread02" class="acme.entities.threads.Thread">
+		<property name="creator" ref ="worker2Authenticated"/>
 		<property name="title" value="Sample thread 02"/>
 		<property name="moment" value="2019/09/29  11:22"/>
 		<property name="messages">
@@ -1084,6 +1086,7 @@
 	</bean>
 	
 	<bean id="thread03" class="acme.entities.threads.Thread">
+		<property name="creator" ref ="worker2Authenticated"/>
 		<property name="title" value="Sample thread 03"/>
 		<property name="moment" value="2019/08/29  11:22"/>
 		<property name="messages">
@@ -1109,9 +1112,8 @@
 	
 	<!--Audit Record-->
 	
-	<!--Audit Record 1-->
 	<bean name="auditrecord1" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job1-auditor1"/>
+	  <property name="reference" value="JOB-1:AUDITOR-1"/>
 	  <property name="title" value="Title 1"/>
 	  <property name="status" value="false" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1121,7 +1123,7 @@
    	</bean>
    
    	<bean name="auditrecord2" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job2-auditor2"/>
+	  <property name="reference" value="JOB-2:AUDITOR-2"/>
 	  <property name="title" value="Title 2"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1131,7 +1133,7 @@
   	</bean>
    
 	<bean name="auditrecord3" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job2-auditor3"/>
+	  <property name="reference" value="JOB-3:AUDITOR-3"/>
 	  <property name="title" value="Title 3"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1141,7 +1143,7 @@
    	</bean>
    	   	
    	<bean name="auditrecord4" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job3.1-auditor2"/>
+	  <property name="reference" value="JOB-4:AUDITOR-4"/>
 	  <property name="title" value="Title 4"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1151,7 +1153,7 @@
    	</bean>
    
 	<bean name="auditrecord5" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job3-auditor2"/>
+	  <property name="reference" value="JOB-5:AUDITOR-5"/>
 	  <property name="title" value="Title 3"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1161,7 +1163,7 @@
    	</bean>
    	
    	<bean name="auditrecord6" class= "acme.entities.auditrecord.Auditrecord">
-	  <property name="reference" value="job3.2-auditor2"/>
+	  <property name="reference" value="JOB-6:AUDITOR-6"/>
 	  <property name="title" value="Title 3"/>
 	  <property name="status" value="true" />
 	  <property name="moment" value="2030/12/11 23:59"/>
@@ -1169,7 +1171,9 @@
 	  <property name="job" ref="job3" />
 	  <property name="auditor" ref="auditor2Auditor" />
    	</bean>
+   	
    <!--  Auditors-->
+   
    <!--  Auditor 1-->
  <bean name="auditor1UserAccount" class="acme.framework.entities.UserAccount">
 		<property name="username" value="auditor1"/>

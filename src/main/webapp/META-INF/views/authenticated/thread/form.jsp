@@ -32,9 +32,14 @@ tr:nth-child(even) {
 }
 </style>
 
-<acme:form readonly="true">
-	<acme:form-textbox  code="authenticated.thread.form.label.moment" path="moment"/>
+<acme:form >
+	
+	<jstl:if test="${(command == 'show') || (command == 'create') }">
 	<acme:form-textbox code="authenticated.thread.form.label.title" path="title"/>
+	</jstl:if>
+	<jstl:if test= "${command == 'show'}">
+	<acme:form-textbox  code="authenticated.thread.form.label.moment" path="moment"/>
+	<acme:form-textbox  code="authenticated.thread.form.label.creator" path="creator.userAccount.username"/>
 	<b><acme:message code="authenticated.thread.form.label.messages"/></b>
 	<table>
 		<tr>
@@ -52,7 +57,45 @@ tr:nth-child(even) {
 		</jstl:forEach>
 	</table>
 	<br>
-
+	<b><acme:message code="authenticated.thread.form.label.users"/></b>
+	<table>
+		<tr>
+			<th><acme:message code="authenticated.thread.form.label.user.name"/></th>
+		</tr>
+		<jstl:forEach var="user" items="${users}">
+		<tr>
+			<td>${user.userAccount.username}</td>
+			<jstl:if test="${principal.getActiveRoleId() == (creatorId) }">
+			<td><a href = "authenticated/thread/remove-user?id=${id}&userId=${user.userAccount.id}"><acme:message code="authenticated.thread.form.remove"/></a></td>
+			</jstl:if>
+		</tr>
+		</jstl:forEach>
+	</table>
+	<br>
+	<jstl:if test="${principal.getActiveRoleId() == (creatorId) }">
+	<a href = "authenticated/thread/add-user?id=${id}"><acme:message code="authenticated.thread.form.label.user.add"/></a>
+	</jstl:if>
+	</jstl:if>
+	
+	<jstl:if test="${command == 'add-user' }">
+	<acme:form-select code="authenticated.thread.form.label.user.add" path="userId">
+		<jstl:forEach var = "user" items="${otherUsers}" >
+		<acme:form-option code="${user.userAccount.username}" value="${user.userAccount.id}"/>
+		</jstl:forEach>
+	</acme:form-select>
+	<acme:form-submit test="true" 
+		code="authenticated.thread.form.add"
+		action="/authenticated/thread/add-user"/>
+	</jstl:if>
+	
+	
+	<acme:form-submit test="${command == 'remove-user'}" 
+		code="authenticated.thread.form.remove"
+		action="/authenticated/thread/remove-user?id=${id}&userId=${userId}"/>
+	
+	<acme:form-submit test="${command == 'create'}" 
+		code="authenticated.thread.form.button.create"
+		action="/authenticated/thread/create"/>
 	
 	<acme:form-return code="authenticated.thread.form.button.return"/>
 </acme:form>

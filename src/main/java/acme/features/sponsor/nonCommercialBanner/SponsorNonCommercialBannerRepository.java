@@ -1,4 +1,3 @@
-
 package acme.features.sponsor.nonCommercialBanner;
 
 import java.util.Collection;

@@ -1,15 +1,10 @@
 
 package acme.features.sponsor.nonCommercialBanner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.banners.NonCommercialBanner;
-import acme.entities.customisationParameters.CustomisationParameter;
 import acme.entities.roles.Sponsor;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -66,27 +61,6 @@ public class SponsorNonCommercialBannerUpdateService implements AbstractUpdateSe
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		CustomisationParameter s = this.repository.findOneCustomisationParameterById();
-
-		String[] spamEn = s.getSpamWordsEn().toString().split(", ");
-		String[] spamEs = s.getSpamWordsEs().toString().split(",");
-
-		List<String> spamWord = new ArrayList<String>();
-		spamWord.addAll(Arrays.asList(spamEn));
-		spamWord.addAll(Arrays.asList(spamEs));
-
-		if (entity.getPicture() != null) {
-			errors.state(request, !this.existeWordSpam(spamWord, entity.getPicture()), "picture", "sponsor.nonCommercialBanner.error.spamWords");
-		}
-		if (entity.getSlogan() != null) {
-			errors.state(request, !this.existeWordSpam(spamWord, entity.getSlogan()), "slogan", "sponsor.nonCommercialBanner.error.spamWords");
-		}
-		if (entity.getTargetURL() != null) {
-			errors.state(request, !this.existeWordSpam(spamWord, entity.getTargetURL()), "targetURL", "sponsor.nonCommercialBanner.error.spamWords");
-		}
-		if (entity.getJingle() != null) {
-			errors.state(request, !this.existeWordSpam(spamWord, entity.getJingle()), "jingle", "sponsor.nonCommercialBanner.error.spamWords");
-		}
 
 	}
 
@@ -97,20 +71,6 @@ public class SponsorNonCommercialBannerUpdateService implements AbstractUpdateSe
 
 		this.repository.save(entity);
 
-	}
-	public Boolean existeWordSpam(final List<String> lista, final String text) {
-		int spamconter = 0;
-		boolean res = false;
-		for (String word : lista) {
-			if (text.contains(word)) {
-				spamconter += 1;
-			}
-		}
-		if (spamconter > 0) {
-
-			res = true;
-		}
-		return res;
 	}
 
 }

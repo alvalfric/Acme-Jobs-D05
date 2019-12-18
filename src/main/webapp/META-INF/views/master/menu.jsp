@@ -29,12 +29,15 @@
 			
 	       <acme:menu-suboption code="master.menu.authenticated.announcement" action="/authenticated/announcement/list"/>
 	       <acme:menu-suboption code="master.menu.authenticated.thread" action="/authenticated/thread/list-mine"/>
+	       <acme:menu-suboption code="master.menu.authenticated.thread.list.created" action="/authenticated/thread/list-created"/>
+	       <acme:menu-suboption code="master.menu.authenticated.thread.create" action="/authenticated/thread/create"/>
 	       <acme:menu-suboption code="master.menu.authenticated.investorRecord.list" action="/authenticated/investor-record/list"/>
 	       <acme:menu-suboption code="master.menu.authenticated.company-records" action="/authenticated/company-record/list"/>
            <acme:menu-suboption code="master.menu.authenticated.requests" action="/authenticated/requests/list"/>
            <acme:menu-suboption code="master.menu.authenticated.challenge" action="/authenticated/challenge/list"/>
            <acme:menu-suboption code="master.menu.authenticated.offer" action="/authenticated/offer/list"/>
            <acme:menu-suboption code="master.menu.authenticated.job" action="/authenticated/job/list"/>
+           <acme:menu-suboption code="master.menu.authenticated.thread.create" action="/authenticated/thread/create"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
@@ -60,6 +63,7 @@
 			
 			<acme:menu-suboption code="master.menu.administrator.company-records.create" action="/administrator/company-record/create"/>
 			<acme:menu-suboption code="master.menu.administrator.investorRecord.create" action="/administrator/investor-record/create"/>
+			<acme:menu-suboption code="requestauditor" action="/administrator/request-auditor/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
 		</acme:menu-option>
@@ -75,10 +79,13 @@
 		<acme:menu-option code="master.menu.employer" access="hasRole('Employer')">
 			<acme:menu-suboption code="master.menu.employer.job" action="/employer/job/list-mine"/>
 			<acme:menu-suboption code="master.menu.employer.application" action="/employer/application/list-mine"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.employer.job.create" action="/employer/job/create"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.worker" access="hasRole('Worker')">
 			<acme:menu-suboption code="master.menu.worker.application" action="/worker/application/list-mine"/>
+			<acme:menu-suboption code="master.menu.authenticated.job" action="/worker/job/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">
@@ -118,6 +125,10 @@
 			<acme:menu-suboption code="master.menu.user-account.employer" action="/authenticated/employer/update" access="hasRole('Employer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-worker" action="/authenticated/worker/create" access="!hasRole('Worker')"/>
 			<acme:menu-suboption code="master.menu.user-account.worker" action="/authenticated/worker/update" access="hasRole('Worker')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-sponsor" action="/authenticated/sponsor/create" access="!hasRole('Sponsor')"/>
+			<acme:menu-suboption code="master.menu.user-account.sponsor" action="/authenticated/sponsor/update" access="hasRole('Sponsor')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-auditor" action="/authenticated/request-auditor/create" access="!hasRole('Auditor')"/>
+			<acme:menu-suboption code="master.menu.user-account.auditor" action="/authenticated/request-auditor/update" access="hasRole('Auditor')"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out" action="/master/sign-out" access="isAuthenticated()"/>

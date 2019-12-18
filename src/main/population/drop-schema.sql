@@ -75,6 +75,10 @@
        drop 
        foreign key FK_20xk0ev32hlg96kqynl6laie2;
 
+    alter table `thread` 
+       drop 
+       foreign key `FKi6qpt5u0ti53aogdftkunyp6r`;
+
     alter table `thread_authenticated` 
        drop 
        foreign key `FKkuamwlt147dsxim98bfhh4dsr`;
@@ -136,6 +140,8 @@
     drop table if exists `offer`;
 
     drop table if exists `provider`;
+
+    drop table if exists `request_auditor`;
 
     drop table if exists `requests`;
 

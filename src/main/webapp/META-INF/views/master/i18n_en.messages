@@ -94,6 +94,8 @@ master.menu.authenticated.requests = Requests
 master.menu.authenticated.company-records = Company Records
 master.menu.authenticated.investorRecord.list = Investor Records
 master.menu.authenticated.thread = My Threads
+master.menu.authenticated.thread.list.created = Created Threads
+master.menu.authenticated.thread.create = Create Thread
 master.menu.authenticated.job = Jobs
 
 # master.menu.employer ########################################################
@@ -101,6 +103,7 @@ master.menu.authenticated.job = Jobs
 master.menu.employer = Employer
 master.menu.employer.job = My Jobs
 master.menu.employer.application = My Applications
+master.menu.employer.job.create = Create Job
 
 # master.menu.worker ########################################################
 
@@ -148,6 +151,8 @@ master.menu.user-account.employer = Employer data
 master.menu.user-account.become-employer = Become a employer
 master.menu.user-account.become-worker = Become a worker
 master.menu.user-account.worker = Worker data
+master.menu.user-account.become-sponsor= Become a sponsor
+master.menu.user-account.sponsor= Sponsor data
 
 # master.footer ###############################################################
 

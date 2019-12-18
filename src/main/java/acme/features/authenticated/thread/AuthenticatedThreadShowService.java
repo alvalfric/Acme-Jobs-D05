@@ -38,7 +38,7 @@ public class AuthenticatedThreadShowService implements AbstractShowService<Authe
 			userAccounts.add(user.getUserAccount().getId());
 		}
 
-		assert userAccounts.contains(principal.getAccountId());
+		assert principal.getAccountId() == result.getCreator().getUserAccount().getId() || userAccounts.contains(principal.getAccountId());
 
 		return true;
 	}
@@ -49,9 +49,16 @@ public class AuthenticatedThreadShowService implements AbstractShowService<Authe
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "moment");
+		request.unbind(entity, model, "title", "moment", "creator.userAccount.username");
 		Collection<Message> messages = entity.getMessages();
 		model.setAttribute("messages", messages);
+		Collection<Authenticated> users = entity.getUsers();
+		model.setAttribute("users", users);
+		Integer creatorId = entity.getCreator().getId();
+		model.setAttribute("creatorId", creatorId);
+		Collection<Authenticated> otherUsers = this.repository.findAllAuthenticated();
+		otherUsers.removeAll(users);
+		model.setAttribute("otherUsers", otherUsers);
 
 	}
 
