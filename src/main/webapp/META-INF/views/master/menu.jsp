@@ -37,7 +37,6 @@
            <acme:menu-suboption code="master.menu.authenticated.challenge" action="/authenticated/challenge/list"/>
            <acme:menu-suboption code="master.menu.authenticated.offer" action="/authenticated/offer/list"/>
            <acme:menu-suboption code="master.menu.authenticated.job" action="/authenticated/job/list"/>
-           <acme:menu-suboption code="master.menu.authenticated.thread.create" action="/authenticated/thread/create"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
@@ -63,7 +62,6 @@
 			
 			<acme:menu-suboption code="master.menu.administrator.company-records.create" action="/administrator/company-record/create"/>
 			<acme:menu-suboption code="master.menu.administrator.investorRecord.create" action="/administrator/investor-record/create"/>
-			<acme:menu-suboption code="requestauditor" action="/administrator/request-auditor/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
 		</acme:menu-option>
@@ -85,7 +83,6 @@
 		
 		<acme:menu-option code="master.menu.worker" access="hasRole('Worker')">
 			<acme:menu-suboption code="master.menu.worker.application" action="/worker/application/list-mine"/>
-			<acme:menu-suboption code="master.menu.authenticated.job" action="/worker/job/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">

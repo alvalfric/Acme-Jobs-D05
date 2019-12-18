@@ -39,7 +39,7 @@ tr:nth-child(even) {
 	</jstl:if>
 	<jstl:if test= "${command == 'show'}">
 	<acme:form-textbox  code="authenticated.thread.form.label.moment" path="moment"/>
-	<acme:form-textbox  code="authenticated.thread.form.label.creator" path="creator.userAccount.username"/>
+	<acme:form-textbox code="authenticated.thread.form.label.title" path="title"/>
 	<b><acme:message code="authenticated.thread.form.label.messages"/></b>
 	<table>
 		<tr>
@@ -57,6 +57,7 @@ tr:nth-child(even) {
 		</jstl:forEach>
 	</table>
 	<br>
+
 	<b><acme:message code="authenticated.thread.form.label.users"/></b>
 	<table>
 		<tr>

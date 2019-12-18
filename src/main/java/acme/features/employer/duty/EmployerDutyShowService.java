@@ -1,4 +1,5 @@
 
+
 package acme.features.employer.duty;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,3 +65,4 @@ public class EmployerDutyShowService implements AbstractShowService<Employer, Du
 	}
 
 }
+

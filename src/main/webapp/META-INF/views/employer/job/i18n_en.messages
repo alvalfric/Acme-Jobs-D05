@@ -27,6 +27,6 @@ employer.job.error.spam = Title contains spam words
 employer.job.error.duties.menor = Duty percentage is lower than 100%
 employer.job.error.duties.mayor = Duty percentage is greater than 100%
 
-
 employer.job.form.button.audit-record = Go to Audit Records
+
 employer.job.form.button.return = Return

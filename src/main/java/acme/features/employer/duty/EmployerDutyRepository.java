@@ -22,7 +22,7 @@ public interface EmployerDutyRepository extends AbstractRepository {
 	@Query("select j from Job j where j.id = ?1")
 	Job findOneJobById(int id);
 
-	@Query("select j from Job j where j.descriptor.id = (select d.descriptor.id from Duty d where d.id = ?1)")
+	@Query("select j from Job j where j.descriptor.id = (select d.descriptor.id from Duty d where d.id = 1577)")
 	Job findOneJobByDutyId(int id);
 
 	@Query("select j.descriptor.duties from Job j where j.id = ?1")
