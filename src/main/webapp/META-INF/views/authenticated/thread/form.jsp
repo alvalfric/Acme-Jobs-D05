@@ -52,7 +52,7 @@ tr:nth-child(even) {
 		</jstl:forEach>
 	</table>
 	<br>
-
+<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/authenticated/message/create?threadid=${id}'" value="<acme:message code="authenticated.thread.form.button.create"/>" >
 	
 	<acme:form-return code="authenticated.thread.form.button.return"/>
 </acme:form>

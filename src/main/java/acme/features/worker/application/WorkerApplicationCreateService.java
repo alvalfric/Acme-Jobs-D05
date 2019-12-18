@@ -45,7 +45,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "moment");
+		request.bind(entity, errors, "moment", "lastUpdate");
 
 	}
 
@@ -55,7 +55,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "reference", "status", "statement", "skills", "qualifications", "moment");
+		request.unbind(entity, model, "reference", "status", "statement", "skills", "qualifications", "moment", "lastUpdate");
 		Job job = entity.getJob();
 		model.setAttribute("job", job);
 		Worker worker = entity.getWorker();
@@ -103,6 +103,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
+		entity.setLastUpdate(moment);
 		this.repository.save(entity);
 
 	}

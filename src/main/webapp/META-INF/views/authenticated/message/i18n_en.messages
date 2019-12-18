@@ -21,3 +21,4 @@ authenticated.message.form.label.user = User
 authenticated.message.form.label.moment = Moment
 authenticated.message.form.button.return = Return
 
+authenticated.message.form.button.create= Create

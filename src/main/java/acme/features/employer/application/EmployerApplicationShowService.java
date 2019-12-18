@@ -35,9 +35,9 @@ public class EmployerApplicationShowService implements AbstractShowService<Emplo
 		assert model != null;
 
 		if (entity.getStatus().equals("REJECTED")) {
-			request.unbind(entity, model, "reference", "moment", "status", "statement", "skills", "qualifications", "rejectReason");
+			request.unbind(entity, model, "reference", "moment", "lastUpdate", "status", "statement", "skills", "qualifications", "rejectReason");
 		} else {
-			request.unbind(entity, model, "reference", "moment", "status", "statement", "skills", "qualifications");
+			request.unbind(entity, model, "reference", "moment", "lastUpdate", "status", "statement", "skills", "qualifications");
 		}
 
 	}

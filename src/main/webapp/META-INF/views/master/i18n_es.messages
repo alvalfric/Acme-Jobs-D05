@@ -99,6 +99,7 @@ master.menu.authenticated.job = Trabajos
 master.menu.employer = Empleador
 master.menu.employer.job = Mis Trabajos
 master.menu.employer.application = Mis Aplicaciones
+master.menu.employer.job.create = Crear Trabajo
 
 # master.menu.worker ############################################################
 master.menu.worker = Trabajador
@@ -122,6 +123,14 @@ master.menu.provider.requests.create = Crear Oferta
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 master.menu.consumer.offer.create = Crear Oferta
+
+# master.menu.sponsor ###################################################
+
+master.menu.sponsor = Sponsor
+master.menu.sponsor.commercialBanner = Mis Banners Comerciales
+master.menu.sponsor.commercialBanner.create = Crear Banner Comercial
+master.menu.sponsor.nonCommercialBanner = Mis Banners No Comerciales
+master.menu.sponsor.nonCommercialBanner.create = Crear Banner No Comercial
 
 # master.menu.user-account ####################################################
 

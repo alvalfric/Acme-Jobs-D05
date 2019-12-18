@@ -1,6 +1,8 @@
 
 package acme.features.employer.application;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +38,10 @@ public class EmployerApplicationUpdateService implements AbstractUpdateService<E
 		assert model != null;
 
 		if (request.getModel().getString("status").equals("REJECTED")) {
-			request.unbind(entity, model, "reference", "moment", "status", "statement", "skills", "qualifications", "rejectReason");
+			request.unbind(entity, model, "reference", "moment", "lastUpdate", "status", "statement", "skills", "qualifications", "rejectReason");
 		}
 		if (request.getModel().getString("status").equals("ACCEPTED")) {
-			request.unbind(entity, model, "reference", "moment", "status", "statement", "skills", "qualifications");
+			request.unbind(entity, model, "reference", "moment", "lastUpdate", "status", "statement", "skills", "qualifications");
 		}
 
 	}
@@ -90,12 +92,16 @@ public class EmployerApplicationUpdateService implements AbstractUpdateService<E
 		assert request != null;
 		assert entity != null;
 
+		Date moment;
+
+		moment = new Date(System.currentTimeMillis() - 1);
+		entity.setLastUpdate(moment);
+
 		entity.setStatus(request.getModel().getString("status"));
 		if (request.getModel().getString("status").equals("REJECTED")) {
-			if (request.getModel().getString("rejectReason").equals("")) {
-
+			if (!request.getModel().getString("rejectReason").isEmpty()) {
+				entity.setRejectReason(request.getModel().getString("rejectReason"));
 			}
-			entity.setRejectReason(request.getModel().getString("rejectReason"));
 		}
 
 		this.repository.save(entity);
