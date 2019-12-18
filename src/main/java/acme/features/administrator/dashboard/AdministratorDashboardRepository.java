@@ -79,12 +79,12 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	@Query("select 1.0 * count(j) / (select count(b) from Job b) from Job j where j.finalMode = false")
 	Double ratioOfNoFinalModeJobs();
 
-	@Query("select a.lastUpdate,count(a) from Application a where a.status = 'PENDING' and TIMESTAMPDIFF(DAY, a.lastUpdate, CURRENT_DATE())<=28 group by a.lastUpdate order by a.lastUpdate asc")
-	Collection<Object[]> numberOfPendingApplicationsPerDay();
+	@Query("select timestamp(a.lastUpdate) from Application a where a.status = 'PENDING' and TIMESTAMPDIFF(DAY, timestamp(a.lastUpdate), CURRENT_TIMESTAMP())<=28 group by timestamp(a.lastUpdate) order by timestamp(a.lastUpdate) asc")
+	Collection<Date> numberOfPendingApplicationsPerDay();
 
-	@Query("select a.lastUpdate,count(a) from Application a where a.status = 'ACCEPTED' and TIMESTAMPDIFF(DAY, a.lastUpdate, CURRENT_DATE())<=28 group by a.lastUpdate order by a.lastUpdate asc")
-	Collection<Object[]> numberOfAcceptedApplicationsPerDay();
+	@Query("select timestamp(a.lastUpdate) from Application a where a.status = 'ACCEPTED' and TIMESTAMPDIFF(DAY, timestamp(a.lastUpdate), CURRENT_TIMESTAMP())<=28 group by timestamp(a.lastUpdate) order by timestamp(a.lastUpdate) asc")
+	Collection<Date> numberOfAcceptedApplicationsPerDay();
 
-	@Query("select a.lastUpdate,count(a) from Application a where a.status = 'REJECTED' and TIMESTAMPDIFF(DAY, a.lastUpdate, CURRENT_DATE())<=28 group by a.lastUpdate order by a.lastUpdate asc")
-	Collection<Object[]> numberOfRejectedApplicationsPerDay();
+	@Query("select timestamp(a.lastUpdate) from Application a where a.status = 'REJECTED' and TIMESTAMPDIFF(DAY, timestamp(a.lastUpdate), CURRENT_TIMESTAMP())<=28 group by timestamp(a.lastUpdate) order by timestamp(a.lastUpdate) asc")
+	Collection<Date> numberOfRejectedApplicationsPerDay();
 }
