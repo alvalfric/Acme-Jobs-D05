@@ -12,8 +12,11 @@
 
 package acme.features.administrator.dashboard;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +57,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		request.unbind(entity, model, "totalNumberOfAnnouncements", "totalNumberOfCompanyRecords", "totalNumberOfInvestorRecords", "mininumRewardOfActiveRequests", "maximumRewardOfActiveRequests", "averageRewardOfActiveRequests",
 			"mininumRewardOfActiveOffers", "maximumRewardOfActiveOffers", "averageRewardOfActiveOffers", "totalNumberOfCompanyRecordsGroupedBySector", "totalNumberOfInvestorRecordsGroupedBySector", "averageNumberOfJobsPerEmployer",
 			"averageNumberOfApplicationsPerEmployer", "averageNumberOfApplicationsPerWorker", "chartCompanyInvestor", "ratioOfYesFinalModeJobs", "ratioOfNoFinalModeJobs", "ratioOfPendingApplications", "ratioOfRejectedApplications",
-			"ratioOfAcceptedApplications");
+			"ratioOfAcceptedApplications", "numberOfPendingApplicationsPerDay", "numberOfAcceptedApplicationsPerDay", "numberOfRejectedApplicationsPerDay");
 	}
 
 	@Override
@@ -142,20 +145,71 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setRatioOfNoFinalModeJobs(this.repository.ratioOfNoFinalModeJobs());
 
 		Map<Date, Integer> mP = new HashMap<Date, Integer>();
-		for (Object[] oP : this.repository.numberOfPendingApplicationsPerDay()) {
-			mP.put(Date.valueOf(String.valueOf(oP[0]).split(" ")[0].replace("<<", "")), Integer.valueOf(String.valueOf(oP[1])));
+		for (Date dP : this.repository.numberOfPendingApplicationsPerDay()) {
+			//			mP.put(Date.valueOf(oP[0].toString().split(" ")[0].replace("<<", "")), Integer.valueOf(oP[1].toString()));
+			//			Date dP1 = dP;
+			//			DateFormatUtils.format(dP1, "yyyy-MM-dd");
+			String pattern = "yyyy-MM-dd";
+			DateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			String date = simpleDateFormat.format(dP);
+			Date dP1 = new Date();
+			try {
+				dP1 = simpleDateFormat.parse(date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (!mP.containsKey(dP1)) {
+				mP.put(dP1, 1);
+			} else {
+				mP.replace(dP1, mP.get(dP1) + 1);
+			}
 		}
 		result.setNumberOfPendingApplicationsPerDay(mP);
 
 		Map<Date, Integer> mA = new HashMap<Date, Integer>();
-		for (Object[] oA : this.repository.numberOfAcceptedApplicationsPerDay()) {
-			mA.put(Date.valueOf(String.valueOf(oA[0]).split(" ")[0].replace("<<", "")), Integer.valueOf(String.valueOf(oA[1])));
+		for (Date dA : this.repository.numberOfAcceptedApplicationsPerDay()) {
+			//			mA.put(Date.valueOf(oA[0].toString().split(" ")[0].replace("<<", "")), Integer.valueOf(oA[1].toString()));
+			//			Date dA1 = dA;
+			//			DateFormatUtils.format(dA1, "yyyy-MM-dd");
+			String pattern = "yyyy-MM-dd";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			String date = simpleDateFormat.format(dA);
+			Date dA1 = new Date();
+			try {
+				dA1 = simpleDateFormat.parse(date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (!mA.containsKey(dA1)) {
+				mA.put(dA1, 1);
+			} else {
+				mA.replace(dA1, mA.get(dA1) + 1);
+			}
 		}
 		result.setNumberOfAcceptedApplicationsPerDay(mA);
 
 		Map<Date, Integer> mR = new HashMap<Date, Integer>();
-		for (Object[] oR : this.repository.numberOfRejectedApplicationsPerDay()) {
-			mR.put(Date.valueOf(String.valueOf(oR[0]).split(" ")[0].replace("<<", "")), Integer.valueOf(String.valueOf(oR[1])));
+		for (Date dR : this.repository.numberOfRejectedApplicationsPerDay()) {
+			//			mR.put(Date.valueOf(oR[0].toString().split(" ")[0].replace("<<", "")), Integer.valueOf(oR[1].toString()));
+			//			Date dR1 = dR;
+			//			DateFormatUtils.format(dR1, "yyyy-MM-dd");
+			String pattern = "yyyy-MM-dd";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			String date = simpleDateFormat.format(dR);
+			Date dR1 = new Date();
+			try {
+				dR1 = simpleDateFormat.parse(date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (!mR.containsKey(dR1)) {
+				mR.put(dR1, 1);
+			} else {
+				mR.replace(dR1, mR.get(dR1) + 1);
+			}
 		}
 		result.setNumberOfRejectedApplicationsPerDay(mR);
 
