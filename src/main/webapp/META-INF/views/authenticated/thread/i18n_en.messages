@@ -30,5 +30,6 @@ authenticated.thread.form.button.create = Create
 authenticated.thread.form.label.user.add = Add Users
 authenticated.thread.form.add = Add
 
+authenticated.thread.form.button.add-message = Add Message
 
-authenticated.thread.form.button.create= Create message
+authenticated.thread.form.remove.user = You are gonna delete the following user from this thread:

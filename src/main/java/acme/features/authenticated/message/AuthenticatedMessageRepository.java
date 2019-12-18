@@ -9,10 +9,14 @@ import org.springframework.stereotype.Repository;
 import acme.entities.customisationParameters.CustomisationParameter;
 import acme.entities.threads.Message;
 import acme.framework.entities.Authenticated;
+import acme.framework.entities.UserAccount;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
 public interface AuthenticatedMessageRepository extends AbstractRepository {
+
+	@Query("select ua from UserAccount ua where ua.id = ?1")
+	UserAccount findOneUserAccountById(int id);
 
 	@Query("select m from Message m where m.id = ?1")
 	Message findOneById(int id);
@@ -24,7 +28,7 @@ public interface AuthenticatedMessageRepository extends AbstractRepository {
 	acme.entities.threads.Thread findThreadByMessageId(int id);
 
 	@Query("select a from Authenticated a where a.userAccount.id = ?1")
-	Authenticated findOneUserByAccountyId(int id);
+	Authenticated findOneAuthenticatedUserByAccountId(int id);
 
 	@Query("select t from Thread t where t.id = ?1")
 	acme.entities.threads.Thread findOnethreadById(int id);

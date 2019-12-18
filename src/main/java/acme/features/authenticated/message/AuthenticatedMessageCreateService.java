@@ -3,6 +3,7 @@ package acme.features.authenticated.message;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import acme.entities.customisationParameters.CustomisationParameter;
 import acme.entities.threads.Message;
 import acme.framework.components.Errors;
-import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -31,7 +31,11 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
 
-		return true;
+		boolean result;
+		Principal principal = request.getPrincipal();
+		acme.entities.threads.Thread thread = this.repository.findOnethreadById(request.getModel().getInteger("threadid"));
+		result = thread.getUsers().contains(this.repository.findOneAuthenticatedUserByAccountId(principal.getAccountId()));
+		return result;
 	}
 
 	@Override
@@ -40,7 +44,7 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors);
+		request.bind(entity, errors, "moment");
 	}
 
 	@Override
@@ -49,15 +53,9 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "body", "tags", "moment", "user");
+		request.unbind(entity, model, "title", "body", "tags", "user");
 
 		model.setAttribute("threadid", request.getModel().getAttribute("threadid"));
-		if (request.isMethod(HttpMethod.GET)) {
-			model.setAttribute("confirm", "false");
-		} else {
-			request.transfer(model, "confirm");
-		}
-
 	}
 
 	@Override
@@ -65,21 +63,12 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert request != null;
 
 		Message result = new Message();
-
 		Principal principal = request.getPrincipal();
 		Integer id = principal.getAccountId();
-		Authenticated au = this.repository.findOneUserByAccountyId(id);
 
-		Integer threadId = request.getModel().getInteger("threadid");
-
-		acme.entities.threads.Thread t = this.repository.findOnethreadById(threadId);
-
-		List<Authenticated> lista = t.getUsers();
-		lista.add(au);
-		t.setUsers(lista);
-		result.setUser(au);
-		result.setThread(t);
-
+		result.setUser(this.repository.findOneAuthenticatedUserByAccountId(id));
+		result.setMoment(new Date(System.currentTimeMillis() - 1));
+		result.setThread(this.repository.findOnethreadById(request.getModel().getInteger("threadid")));
 		return result;
 	}
 
@@ -100,8 +89,14 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		spamWord.addAll(Arrays.asList(spamEn));
 		spamWord.addAll(Arrays.asList(spamEs));
 
-		isConfirmed = request.getModel().getBoolean("confirm");
-		errors.state(request, isConfirmed, "confirm", "authenticated.message.error.must-confirm");
+		System.out.println(request.getModel().getAttribute("confirm"));
+		if (request.getModel().getAttribute("confirm").toString().isEmpty()) {
+			errors.state(request, false, "confirm", "authenticated.message.error.must-confirm");
+			request.getModel().setAttribute("confirm", false);
+		} else if (request.getModel().getBoolean("confirm") == false) {
+			errors.state(request, !request.getModel().getBoolean("confirm"), "confirm", "authenticated.message.error.must-confirm");
+			request.getModel().setAttribute("confirm", false);
+		}
 
 		if (entity.getTitle() != null) {
 			errors.state(request, !this.existeWordSpam(spamWord, entity.getTitle()), "title", "authenticated.message.error.spamWords");
@@ -119,6 +114,8 @@ public class AuthenticatedMessageCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 
+		entity.setMoment(new Date(System.currentTimeMillis() - 1));
+		entity.setThread(this.repository.findOnethreadById(request.getModel().getInteger("threadid")));
 		this.repository.save(entity);
 	}
 

@@ -20,7 +20,7 @@ authenticated.message.form.label.tags = Tags
 authenticated.message.form.label.user = User
 authenticated.message.form.label.moment = Moment
 authenticated.message.form.button.return = Return
-authenticated.message.form.label.confirm = confirm
+authenticated.message.form.label.confirm = Confirm
 
 authenticated.message.form.button.create= Create
 

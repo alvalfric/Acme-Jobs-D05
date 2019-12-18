@@ -19,5 +19,5 @@ authenticated.message.form.label.tags = Etiquetas
 authenticated.message.form.label.user = Usuario
 authenticated.thread.form.label.moment = Momento
 authenticated.thread.form.button.return = Volver
-authenticated.message.form.label.confirm = confirmar
+authenticated.message.error.must-confirm= Debes confirmar al crear el mensaje
 authenticated.message.error.spamWords = Quitar palabras spam
