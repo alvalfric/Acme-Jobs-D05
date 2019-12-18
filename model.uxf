@@ -351,8 +351,8 @@ CustomisationParameter
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>854</x>
-      <y>42</y>
+      <x>812</x>
+      <y>0</y>
       <w>196</w>
       <h>77</h>
     </coordinates>
@@ -885,5 +885,21 @@ m1=0..*
 m2=1
 createdBy ^</panel_attributes>
     <additional_attributes>10.0;160.0;10.0;10.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1022</x>
+      <y>0</y>
+      <w>182</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Entity&gt;&gt;
+RequestAuditor
+--
++ firm: String {NotBlank}
++ responsabilityStat: String {NotBlank}
++ userAccountId: int {NotNull}</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
