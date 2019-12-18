@@ -36,7 +36,12 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 	public boolean authorise(final Request<Application> request) {
 		assert request != null;
 
-		return true;
+		int applicationNumber;
+		boolean result;
+
+		applicationNumber = this.repository.countApplicationsByUserAccountAndJob(request.getPrincipal().getAccountId(), Integer.parseInt(request.getModel().getAttribute("jobId").toString()));
+		result = applicationNumber < 1;
+		return result;
 	}
 
 	@Override
@@ -60,6 +65,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		model.setAttribute("job", job);
 		Worker worker = entity.getWorker();
 		model.setAttribute("worker", worker);
+		model.setAttribute("jobId", entity.getJob().getId());
 
 	}
 
@@ -79,7 +85,7 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		String jobref = job.getReference();
 		String name = principal.getUsername();
 		String name4 = name.substring(0, 4);
-		String reference = jobref + ":" + name4;
+		String reference = (jobref + ":" + name4).toUpperCase();
 		result.setStatus("PENDING");
 		result.setReference(reference);
 		job.getApplications().add(result);
@@ -91,6 +97,28 @@ public class WorkerApplicationCreateService implements AbstractCreateService<Wor
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		if (!errors.hasErrors("reference")) {
+			errors.state(request, !entity.getReference().isEmpty(), "reference", "authenticated.application.error.NotBlank");
+		}
+		if (!errors.hasErrors("status")) {
+			errors.state(request, entity.getStatus() != null, "status", "authenticated.application.error.NotNull");
+		}
+		if (!errors.hasErrors("moment")) {
+			errors.state(request, entity.getMoment() != null, "moment", "authenticated.application.error.NotNull");
+		}
+		if (!errors.hasErrors("statements")) {
+			errors.state(request, !entity.getStatement().isEmpty(), "statements", "authenticated.application.error.NotBlank");
+		}
+		if (!errors.hasErrors("skills")) {
+			errors.state(request, !entity.getSkills().isEmpty(), "skills", "authenticated.application.error.NotBlank");
+		}
+		if (!errors.hasErrors("qualifications")) {
+			errors.state(request, !entity.getQualifications().isEmpty(), "qualifications", "authenticated.application.error.NotBlank");
+		}
+		if (!errors.hasErrors("reference") && entity.getReference() != null) {
+			errors.state(request, entity.getReference().length() > 3 && entity.getReference().length() < 27, "qualifications", "authenticated.application.error.Reference");
+		}
 
 	}
 

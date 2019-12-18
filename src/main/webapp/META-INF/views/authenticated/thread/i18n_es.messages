@@ -11,6 +11,10 @@
 authenticated.thread.list.label.title = Título
 authenticated.thread.list.label.moment = Momento
 
+authenticated.thread.form.label.creator = Creador
+authenticated.thread.form.label.user.name = Nombre de Usuario
+authenticated.thread.form.label.users = Usuarios
+
 authenticated.thread.form.label.messages = Mensajes
 authenticated.thread.form.label.message.title = Título
 authenticated.thread.form.label.message.moment = Momento
@@ -20,3 +24,8 @@ authenticated.thread.form.label.message.show = Ver
 authenticated.thread.form.label.title = Título
 authenticated.thread.form.label.moment = Momento
 authenticated.thread.form.button.return = Volver
+authenticated.thread.form.remove = Eliminar
+authenticated.thread.form.button.create = Crear
+authenticated.thread.form.label.user.add = Añadir Usuarios
+authenticated.thread.form.add = Añadir
+

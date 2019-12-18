@@ -20,10 +20,22 @@ public class AuthenticatedThreadController extends AbstractController<Authentica
 	// Internal state --------------------------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedThreadListMineService	listMineService;
+	private AuthenticatedThreadListMineService		listMineService;
 
 	@Autowired
-	private AuthenticatedThreadShowService		showService;
+	private AuthenticatedThreadListCreatedService	listCreatedService;
+
+	@Autowired
+	private AuthenticatedThreadShowService			showService;
+
+	@Autowired
+	private AuthenticatedThreadCreateService		createService;
+
+	@Autowired
+	private AuthenticatedThreadRemoveUserService	removeUserService;
+
+	@Autowired
+	private AuthenticatedThreadAddUserService		addUserService;
 
 
 	// Constructors ----------------------------------------------------------------------------
@@ -31,6 +43,10 @@ public class AuthenticatedThreadController extends AbstractController<Authentica
 	@PostConstruct
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
+		super.addBasicCommand(BasicCommand.CREATE, this.createService);
 		super.addCustomCommand(CustomCommand.LIST_MINE, BasicCommand.LIST, this.listMineService);
+		super.addCustomCommand(CustomCommand.LIST_CREATED, BasicCommand.LIST, this.listCreatedService);
+		super.addCustomCommand(CustomCommand.REMOVE_USER, BasicCommand.UPDATE, this.removeUserService);
+		super.addCustomCommand(CustomCommand.ADD_USER, BasicCommand.UPDATE, this.addUserService);
 	}
 }

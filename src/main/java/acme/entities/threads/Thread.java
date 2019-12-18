@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,8 +41,13 @@ public class Thread extends DomainEntity {
 
 	@NotNull
 	@Valid
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Authenticated>	users;
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Authenticated		creator;
 
 	@OneToMany(mappedBy = "thread", fetch = FetchType.EAGER)
 	private Set<@Valid Message>	messages;

@@ -44,10 +44,6 @@ tr:nth-child(even) {
 	</table>
 	<br>
 	
-
-	<jstl:if test= "${principal.hasRole('acme.entities.roles.Worker')}">
-	<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/worker/application/create?jobId=${id}'" value="<acme:message code="authenticated.job.form.button.application"/>" >
-	</jstl:if>
 	<input type="button" class="btn btn-default" onclick="location.href='/acme-jobs/employer/auditrecord/list-mine?jobId=${id}'" value="<acme:message code="authenticated.job.form.button.audit-record"/>" >
 	<acme:form-return code="authenticated.job.form.button.return"/>
 </acme:form>
